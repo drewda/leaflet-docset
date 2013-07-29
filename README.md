@@ -20,4 +20,7 @@ The docs are copied from the Leaflet site and indexed using a Ruby script. To se
    rake
    
 ````
-   
+
+Future Improvements
+-------------------
+[ ] The [classification of sections](https://github.com/drewda/leaflet-docset/blob/master/Rakefile#L80-110) (into class, method, interface, etc.) is fast and loose. It could use improvement.
