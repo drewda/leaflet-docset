@@ -7,7 +7,8 @@ task :default => [
   :fetch_docs,
   :remove_annoying_parts_from_docs,
   :fetch_icon,
-  :index
+  :index,
+  :tar
 ]
 
 task :fetch_docs do
@@ -36,6 +37,10 @@ task :index do
   db = SQLite3::Database.new db_path
   create_docset_table(db)
   parse_doc_into_db(doc, db)
+end
+
+task :tar do
+  system "tar --exclude='.DS_Store' -cvzf dist/Leaflet.tgz dist/leaflet.docset"
 end
 
 private
