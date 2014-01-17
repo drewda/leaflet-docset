@@ -4,21 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Documentation - Leaflet - a JavaScript library for mobile-friendly maps</title>
 <meta charset="utf-8">
-<meta property="og:title" content="Leaflet — an open-source JavaScript library for interactive maps">
-<meta property="og:description" content="Leaflet is a modern, lightweight open-source JavaScript library for mobile-friendly interactive maps.">
-<meta property="og:image" content="http://leafletjs.com/docs/images/logo.png">
-<meta itemprop="name" content="Leaflet">
-<meta itemprop="description" content="Leaflet — a modern, lightweight open-source JavaScript library for mobile-friendly interactive maps.">
-<meta itemprop="image" content="http://leafletjs.com/docs/images/logo.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="http://leafletjs.com/docs/images/favicon.png">
 <link href="http://leafletjs.com/atom.xml" type="application/atom+xml" rel="alternate" title="Leaflet Dev Blog Atom Feed">
-<!-- Blueprint --><link rel="stylesheet" href="docs/css/blueprint/screen.css" media="screen, projection">
-<link rel="stylesheet" href="docs/css/blueprint/print.css" media="print">
-<!--[if lt IE 8]><link rel="stylesheet" href="docs/css/blueprint/ie.css" media="screen, projection"><![endif]--><link rel="stylesheet" href="docs/css/screen.css" media="screen, projection">
-<script src="docs/highlight/highlight.pack.js"></script><link rel="stylesheet" href="docs/highlight/styles/github.css">
-<!-- Leaflet --><link rel="stylesheet" href="dist/leaflet.css">
-<!--[if lte IE 8]><link rel="stylesheet" href="dist/leaflet.ie.css" /><![endif]--><script src="dist/leaflet.js"></script><script>
+<!-- Blueprint --><link rel="stylesheet" href="http://leafletjs.com/docs/css/blueprint/screen.css" media="screen, projection">
+<link rel="stylesheet" href="http://leafletjs.com/docs/css/blueprint/print.css" media="print">
+<link rel="stylesheet" href="http://leafletjs.com/docs/css/screen.css" media="screen, projection">
+<script src="http://leafletjs.com/docs/highlight/highlight.pack.js"></script><link rel="stylesheet" href="http://leafletjs.com/docs/highlight/styles/github.css">
+<!-- Leaflet --><link rel="stylesheet" href="http://leafletjs.com/dist/leaflet.css">
+<!--[if lte IE 8]><link rel="stylesheet" href="dist/leaflet.ie.css" /><![endif]--><script src="http://leafletjs.com/dist/leaflet.js"></script><script>
 		CM_ATTR = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
 				'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 				'Imagery © <a href="http://cloudmade.com">CloudMade</a>';
@@ -82,7 +76,7 @@
 		<h4>Map</h4>
 		<ul>
 <li><a href="reference.html#map-usage">Usage example</a></li>
-			<li><a href="reference.html#map-constructor">Constructor</a></li>
+			<li><a href="reference.html#map-constructor">Creation</a></li>
 			<li><a href="reference.html#map-options">Options</a></li>
 			<li><a href="reference.html#map-events">Events</a></li>
 		</ul>
@@ -195,10 +189,10 @@
 <!--<a href="#toc" id="back-to-top">&uarr;</a>-->
 
 <hr>
-<p>This reference reflects <strong>Leaflet 0.6</strong>. <br>
-Docs for the previous stable version (0.5) are available <a href="https://github.com/Leaflet/Leaflet/archive/gh-pages-0.5.zip">in the source form</a> (see <a href="https://github.com/Leaflet/Leaflet/blob/master/CONTRIBUTING.md#improving-documentation">instructions for running docs</a>).</p>
+<p>This reference reflects <strong>Leaflet 0.7</strong>.
+Docs for 0.6 are available <a href="https://github.com/Leaflet/Leaflet/archive/gh-pages-0.6.zip">in the source form</a> (see <a href="https://github.com/Leaflet/Leaflet/blob/master/CONTRIBUTING.md#improving-documentation">instructions for running docs</a>).</p>
 
-<h2 id="map-class">L.Map</h2>
+<h2 id="map-class">Map</h2>
 
 <p>The central class of the API — it is used to create a map on a page and manipulate it.</p>
 
@@ -210,21 +204,17 @@ var map = L.map('map', {
 	zoom: 13
 });</code></pre>
 
-<h3 id="map-constructor" class="left">Constructor</h3>
+<h3 id="map-constructor" class="left">Creation</h3>
 
-<table>
+<table data-id="map">
 <tr>
-<th>Constructor</th>
-		<th>Usage</th>
+<th>Factory</th>
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.Map</b>(
+<td><code><b>L.map</b>(
 			<nobr>&lt;HTMLElement|String&gt; <i>id</i>,</nobr><nobr>&lt;<a href="reference.html#map-options">Map options</a>&gt; <i>options?</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.Map(<span class="comment">…</span>)</code><br><code>L.map(<span class="comment">…</span>)</code>
-		</td>
 
 		<td>Instantiates a map object given a div element (or its id) and optionally an object literal with map options described below.</td>
 	</tr>
@@ -308,13 +298,13 @@ var map = L.map('map', {
 <td><code><b>scrollWheelZoom</b></code></td>
 		<td><code>Boolean</code></td>
 		<td><code><span class="literal">true</span></code></td>
-		<td>Whether the map can be zoomed by using the mouse wheel.</td>
+		<td>Whether the map can be zoomed by using the mouse wheel. If passed <code><span class="string">'center'</span></code>, it will zoom to the center of the view regardless of where the mouse was.</td>
 	</tr>
 <tr>
 <td><code><b>doubleClickZoom</b></code></td>
 		<td><code>Boolean</code></td>
 		<td><code><span class="literal">true</span></code></td>
-		<td>Whether the map can be zoomed in by double clicking on it.</td>
+		<td>Whether the map can be zoomed in by double clicking on it and zoomed out by double clicking while holding shift. If passed <code><span class="string">'center'</span></code>, double-click zoom will zoom to the center of the view regardless of where the mouse was.</td>
 	</tr>
 <tr>
 <td><code><b>boxZoom</b></code></td>
@@ -351,6 +341,12 @@ var map = L.map('map', {
 		<td><code>Boolean</code></td>
 		<td><code><span class="literal">true</span></code></td>
 		<td>Set it to <code><span class="literal">false</span></code> if you don't want popups to close when user clicks the map.</td>
+	</tr>
+<tr>
+<td><code><b>bounceAtZoomLimits</b></code></td>
+		<td><code>Boolean</code></td>
+		<td><code><span class="literal">true</span></code></td>
+		<td>Set it to <code><span class="literal">false</span></code> if you don't want the map to zoom beyond min/max zoom and then bounce back when pinch-zooming.</td>
 	</tr>
 </table>
 <h4>Keyboard Navigation Options</h4>
@@ -412,7 +408,7 @@ var map = L.map('map', {
 <td><code><b>inertiaThreshold</b></code></td>
 		<td><code>Number</code></td>
 		<td><code>depends</code></td>
-		<td>Amount of milliseconds that should pass between stopping the movement and releasing the mouse or touch to prevent inertial movement. <code><span class="number">32</span></code> for touch devices and <code><span class="number">14</span></code> for the rest by default.</td>
+		<td>Number of milliseconds that should pass between stopping the movement and releasing the mouse or touch to prevent inertial movement. <code><span class="number">32</span></code> for touch devices and <code><span class="number">14</span></code> for the rest by default.</td>
 	</tr>
 </table>
 <h4>Control options</h4>
@@ -578,7 +574,7 @@ var map = L.map('map', {
 	</tr>
 <tr>
 <td><code><b>dragend</b></code></td>
-		<td><code><a href="reference.html#event">Event</a></code></td>
+		<td><code><a href="reference.html#dragend-event">DragEndEvent</a></code></td>
 		<td>Fired when the user stops dragging the map.</td>
 	</tr>
 <tr>
@@ -672,7 +668,7 @@ var map = L.map('map', {
 	</tr>
 <tr>
 <td><code><b>setView</b>(
-			<nobr>&lt;<a href="reference.html#latlng">LatLng</a>&gt; <i>center</i>,</nobr><nobr>&lt;Number&gt; <i>zoom</i>,</nobr><nobr>&lt;<a href="reference.html#map-zoompanoptions">zoom/pan options</a>&gt; <i>options?</i> )</nobr></code></td>
+			<nobr>&lt;<a href="reference.html#latlng">LatLng</a>&gt; <i>center</i>,</nobr><nobr>&lt;Number&gt; <i>zoom?</i>,</nobr><nobr>&lt;<a href="reference.html#map-zoompanoptions">zoom/pan options</a>&gt; <i>options?</i> )</nobr></code></td>
 		<td><code><span class="keyword">this</span></code></td>
 		<td>Sets the view of the map (geographical center and zoom) with the given animation options.</td>
 	</tr>
@@ -726,9 +722,10 @@ var map = L.map('map', {
 	</tr>
 <tr id="map-paninsidebounds">
 <td><code><b>panInsideBounds</b>(
-			<nobr>&lt;<a href="reference.html#latlngbounds">LatLngBounds</a>&gt; <i>bounds</i> )</nobr></code></td>
+			<nobr>&lt;<a href="reference.html#latlngbounds">LatLngBounds</a>&gt; <i>bounds</i></nobr>,
+			<nobr>&lt;<a href="reference.html#map-panoptions">pan options</a>&gt; <i>options?</i> )</nobr></code></td>
 		<td><code><span class="keyword">this</span></code></td>
-		<td>Pans the map to the closest view that would lie inside the given bounds (if it's not already).</td>
+		<td>Pans the map to the closest view that would lie inside the given bounds (if it's not already), controlling the animation using the options specific, if any.</td>
 	</tr>
 <tr>
 <td><code><b>panBy</b>(
@@ -739,17 +736,22 @@ var map = L.map('map', {
 	</tr>
 <tr>
 <td><code><b>invalidateSize</b>(
-			<nobr>&lt;Boolean&gt; <i>options?</i></nobr>,
-			<nobr>&lt;<a href="reference.html#map-zoompanoptions">zoom/pan options</a>&gt; <i>options?</i> )</nobr></code></td>
+			<nobr>&lt;Boolean&gt; <i>animate</i> )</nobr></code></td>
 		<td><code><span class="keyword">this</span></code></td>
-		<td>Checks if the map container size changed and updates the map if so — call it after you've changed the map size dynamically, also animating pan by default. If <code>options.pan</code> is <code><span class="literal">false</span></code>, panning will not occur.</td>
+		<td>Checks if the map container size changed and updates the map if so — call it after you've changed the map size dynamically, also animating pan by default.</td>
+	</tr>
+<tr>
+<td><code><b>invalidateSize</b>(
+			<nobr>&lt;<a href="reference.html#map-zoompanoptions">zoom/pan options</a>&gt; <i>options</i> )</nobr></code></td>
+		<td><code><span class="keyword">this</span></code></td>
+		<td>Checks if the map container size changed and updates the map if so — call it after you've changed the map size dynamically, also animating pan by default. If <code>options.pan</code> is <code><span class="literal">false</span></code>, panning will not occur. If <code>options.debounceMoveend</code> is <code><span class="literal">true</span></code>, it will delay <code>moveend</code> event so that it doesn't happen often even if the method is called many times in a row.</td>
 	</tr>
 <tr id="map-setmaxbounds">
 <td><code><b>setMaxBounds</b>(
-			<nobr>&lt;<a href="reference.html#latlngbounds">LatLngBounds</a>&gt; <i>bounds</i></nobr>,
-			<nobr>&lt;<a href="reference.html#map-zoompanoptions">zoom/pan options</a>&gt; <i>options?</i> )</nobr></code></td>
+			<nobr>&lt;<a href="reference.html#latlngbounds">LatLngBounds</a>&gt; <i>bounds</i></nobr><!--,
+			<nobr>&lt;<a href="#map-zoompanoptions">zoom/pan options</a>&gt; <i>options?</i> )</nobr>--></code></td>
 		<td><code><span class="keyword">this</span></code></td>
-		<td>Restricts the map view to the given bounds (see <a href="reference.html#map-maxbounds">map maxBounds</a> option), passing the given animation options through to `setView`, if required.</td>
+		<td>Restricts the map view to the given bounds (see <a href="reference.html#map-maxbounds">map maxBounds</a> option)<!--, animating the map view if bounds are changed.  The given animation options are passed through to `setView` or `panInsideBounds`, depending on map zoom level, and can be used to control how the map animates during this change-->.</td>
 	</tr>
 <tr id="map-locate">
 <td><code><b>locate</b>(
@@ -1035,7 +1037,7 @@ var map = L.map('map', {
 <td><code><b>timeout</b></code></td>
 		<td><code>Number</code></td>
 		<td><code><span class="number">10000</span></code></td>
-		<td>Number of millisecond to wait for a response from geolocation before firing a <code>locationerror</code> event.</td>
+		<td>Number of milliseconds to wait for a response from geolocation before firing a <code>locationerror</code> event.</td>
 	</tr>
 <tr>
 <td><code><b>maximumAge</b></code></td>
@@ -1163,6 +1165,12 @@ var map = L.map('map', {
 		<td><code><nobr>[<span class="number">0</span>, <span class="number">0</span>]</nobr><td>Equivalent of setting both top left and bottom right padding to the same value.</td>
 	</code></td>
 </tr>
+<tr>
+<td><code><b>maxZoom</b></code></td>
+		<td><code>Number</code></td>
+		<td><code><nobr><span class="literal">null</span></nobr></code></td>
+		<td>The maximum possible zoom to use.</td>
+	</tr>
 </table>
 <h3 id="map-properties">Properties</h3>
 
@@ -1272,27 +1280,23 @@ var map = L.map('map', {
 		<td>Pane for popups.</td>
 	</tr>
 </table>
-<h2 id="marker">L.Marker</h2>
+<h2 id="marker">Marker</h2>
 
 <p>Used to put markers on the map.</p>
 
 <pre><code class="javascript">L.marker([50.5, 30.5]).addTo(map);</code></pre>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="marker">
 <tr>
-<th class="width200">Constructor</th>
-		<th>Usage</th>
+<th class="width200">Factory</th>
+
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.Marker</b>(
+<td><code><b>L.marker</b>(
 			<nobr>&lt;<a href="reference.html#latlng">LatLng</a>&gt; <i>latlng</i>,</nobr><nobr>&lt;<a href="reference.html#marker-options">Marker options</a>&gt; <i>options?</i> )</nobr></code></td>
-
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.Marker(<span class="comment">…</span>)</code><br><code>L.marker(<span class="comment">…</span>)</code>
-		</td>
 
 		<td>Instantiates a Marker object given a geographical point and optionally an options object.</td>
 	</tr>
@@ -1335,6 +1339,12 @@ var map = L.map('map', {
 		<td><code>String</code></td>
 		<td><code><span class="string">''</span></code></td>
 		<td>Text for the browser tooltip that appear on marker hover (no tooltip by default).</td>
+	</tr>
+<tr>
+<td><code><b>alt</b></code></td>
+		<td><code>String</code></td>
+		<td><code><span class="string">''</span></code></td>
+		<td>Text for the <code>alt</code> attribute of the icon image (useful for accessibility).</td>
 	</tr>
 <tr id="marker-zindexoffset">
 <td><code><b>zIndexOffset</b></code></td>
@@ -1415,13 +1425,18 @@ var map = L.map('map', {
 	</tr>
 <tr>
 <td><code><b>dragend</b></code></td>
-		<td><code><a href="reference.html#event">Event</a></code></td>
+		<td><code><a href="reference.html#dragend-event">DragEndEvent</a></code></td>
 		<td>Fired when the user stops dragging the marker.</td>
 	</tr>
 <tr>
 <td><code><b>move</b></code></td>
 		<td><code><a href="reference.html#event">Event</a></code></td>
 		<td>Fired when the marker is moved via setLatLng. New coordinate include in event arguments.</td>
+	</tr>
+<tr>
+<td><code><b>add</b></code></td>
+		<td><code><a href="reference.html#event">Event</a></code></td>
+		<td>Fired when the marker is added to the map.</td>
 	</tr>
 <tr>
 <td><code><b>remove</b></code></td>
@@ -1510,6 +1525,11 @@ var map = L.map('map', {
 		<td><code><span class="keyword">this</span></code></td>
 		<td>Opens the popup previously bound by the <a href="reference.html#marker-bindpopup">bindPopup</a> method.</td>
 	</tr>
+<tr>
+<td><code><b>getPopup</b>()</code></td>
+		<td><code><a href="reference.html#popup">Popup</a></code></td>
+		<td>Returns the popup previously bound by the <a href="reference.html#marker-bindpopup">bindPopup</a> method.</td>
+	</tr>
 <tr id="marker-closepopup">
 <td><code><b>closePopup</b>()</code></td>
 		<td><code><span class="keyword">this</span></code></td>
@@ -1525,7 +1545,7 @@ var map = L.map('map', {
 			<nobr>&lt;String&gt; <i>html</i> |</nobr><nobr>&lt;HTMLElement&gt; <i>el</i>,</nobr><nobr>&lt;<a href="reference.html#popup-options">Popup options</a>&gt; <i>options?</i> )</nobr></code></td>
 
 		<td><code><span class="keyword">this</span></code></td>
-		<td>Binds a popup with a particular HTML content to a click on this marker. You can also open the bound popup with the Marker <a href="reference.html#marker-openpopup">openPopup</a> method.</td>
+		<td>Sets an HTML content of the popup of this marker.</td>
 	</tr>
 <tr id="marker-togeojson">
 <td><code><b>toGeoJSON</b>()</code></td>
@@ -1551,7 +1571,7 @@ var map = L.map('map', {
 		<td>Marker dragging handler (by both mouse and touch).</td>
 	</tr>
 </table>
-<h2 id="popup">L.Popup</h2>
+<h2 id="popup">Popup</h2>
 
 <p>Used to open popups in certain places of the map. Use <a href="reference.html#map-openpopup">Map#openPopup</a> to open popups while making sure that only one popup is open at one time (recommended for usability), or use <a href="reference.html#map-addlayer">Map#addLayer</a> to open as many as you want.</p>
 
@@ -1565,23 +1585,20 @@ var map = L.map('map', {
 	.setContent('&lt;p&gt;Hello world!&lt;br /&gt;This is a nice popup.&lt;/p&gt;')
 	.openOn(map);</code></pre>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="popup">
 <tr>
-<th>Constructor</th>
-		<th>Usage</th>
+<th>Factory</th>
+
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.Popup</b>(
-			<nobr>&lt;<a href="reference.html#popup-options">Popup options</a>&gt; <i>options?</i>,</nobr><nobr>&lt;object&gt; <i>source?</i> )</nobr></code></td>
+<td><code><b>L.popup</b>(
+			<nobr>&lt;<a href="reference.html#popup-options">Popup options</a>&gt; <i>options?</i>,</nobr><nobr>&lt;<a href="reference.html#ilayer">ILayer</a>&gt; <i>source?</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.Popup(<span class="comment">…</span>)</code><br><code>L.popup(<span class="comment">…</span>)</code>
-		</td>
 
-		<td>Instantiates a Popup object given an optional options object that describes its appearance and location and an optional object that is used to tag the popup with a reference to the source object to which it refers.</td>
+		<td>Instantiates a Popup object given an optional options object that describes its appearance and location and an optional source object that is used to tag the popup with a reference to the ILayer to which it refers.</td>
 	</tr>
 </table>
 <h3 id="popup-options">Options</h3>
@@ -1636,10 +1653,24 @@ var map = L.map('map', {
 		<td>The offset of the popup position. Useful to control the anchor of the popup when opening it on some overlays.</td>
 	</tr>
 <tr>
+<td><code><b>autoPanPaddingTopLeft</b></code></td>
+		<td><code><a href="reference.html#point">Point</a></code></td>
+		<td><code><span class="literal">null</span></code></td>
+		
+		<td>The margin between the popup and the top left corner of the map view after autopanning was performed.</td>
+	</tr>
+<tr>
+<td><code><b>autoPanPaddingBottomRight</b></code></td>
+		<td><code><a href="reference.html#point">Point</a></code></td>
+		<td><code><span class="literal">null</span></code></td>
+		
+		<td>The margin between the popup and the bottom right corner of the map view after autopanning was performed.</td>
+	</tr>
+<tr>
 <td><code><b>autoPanPadding</b></code></td>
 		<td><code><a href="reference.html#point">Point</a></code></td>
 		<td><code><nobr>Point(<span class="number">5</span>, <span class="number">5</span>)</nobr></code></td>
-		<td>The margin between the popup and the edges of the map view after autopanning was performed.</td>
+		<td>Equivalent of setting both top left and bottom right autopan padding to the same value.</td>
 	</tr>
 <tr>
 <td><code><b>zoomAnimation</b></code></td>
@@ -1684,14 +1715,30 @@ var map = L.map('map', {
 		<td>Sets the geographical point where the popup will open.</td>
 	</tr>
 <tr>
+<td><code><b>getLatLng</b>()</code></td>
+		<td><code><a href="reference.html#latlng">LatLng</a></code></td>
+		<td>Returns the geographical point of popup.</td>
+	</tr>
+<tr>
 <td><code><b>setContent</b>(
 			<nobr>&lt;String|HTMLElement&gt; <i>htmlContent</i> )</nobr></code></td>
 
 		<td><code><span class="keyword">this</span></code></td>
 		<td>Sets the HTML content of the popup.</td>
 	</tr>
+<tr>
+<td><code><b>getContent</b>()</code></td>
+		<td><code>&lt;String|HTMLElement&gt;</code></td>
+		<td>Returns the content of the popup.</td>
+	</tr>
+<tr>
+<td><code><b>update</b>()</code></td>
+
+		<td><code><span class="keyword">this</span></code></td>
+		<td>Updates the popup content, layout and position. Useful for updating the popup after something inside changed, e.g. image loaded.</td>
+	</tr>
 </table>
-<h2 id="tilelayer">L.TileLayer</h2>
+<h2 id="tilelayer">TileLayer</h2>
 
 <p>Used to load and display tile layers on the map, implements <a href="reference.html#ilayer">ILayer</a> interface.</p>
 
@@ -1702,21 +1749,18 @@ var map = L.map('map', {
 	styleId: 997
 }).addTo(map);</code></pre>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="tilelayer">
 <tr>
-<th class="width250">Constructor</th>
-		<th>Usage</th>
+<th class="width250">Factory</th>
+
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.TileLayer</b>(
+<td><code><b>L.tileLayer</b>(
 			<nobr>&lt;String&gt; <i><a href="reference.html#url-template">urlTemplate</a></i>,</nobr><nobr>&lt;<a href="reference.html#tilelayer-options">TileLayer options</a>&gt; <i>options?</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.TileLayer(<span class="comment">…</span>)</code><br><code>L.tileLayer(<span class="comment">…</span>)</code>
-		</td>
 
 		<td>Instantiates a tile layer object given a <a href="reference.html#url-template">URL template</a> and optionally an options object.</td>
 	</tr>
@@ -1753,6 +1797,12 @@ var map = L.map('map', {
 		<td><code>Number</code></td>
 		<td><code><span class="number">18</span></code></td>
 		<td>Maximum zoom number.</td>
+	</tr>
+<tr>
+<td><code><b>maxNativeZoom</b></code></td>
+		<td><code>Number</code></td>
+		<td><code><span class="literal">null</span></code></td>
+		<td>Maximum zoom number the tiles source has available. If it is specified, the tiles on all zoom levels higher than <code>maxNativeZoom</code> will be loaded from <code>maxZoom</code> level and auto-scaled.</td>
 	</tr>
 <tr>
 <td><code><b>tileSize</b></code></td>
@@ -1868,6 +1918,11 @@ var map = L.map('map', {
 		<td>Fired when the tile layer loaded all visible tiles.</td>
 	</tr>
 <tr>
+<td><code><b>tileloadstart</b></code></td>
+		<td><code><a href="reference.html#tile-event">TileEvent</a></code></td>
+		<td>Fired when a tile is requested and starts loading.</td>
+	</tr>
+<tr>
 <td><code><b>tileload</b></code></td>
 		<td><code><a href="reference.html#tile-event">TileEvent</a></code></td>
 		<td>Fired when a tile loads.</td>
@@ -1935,7 +1990,7 @@ var map = L.map('map', {
 		<td>Returns the HTML element that contains the tiles for this layer.</td>
 	</tr>
 </table>
-<h2 id="tilelayer-wms">L.TileLayer.WMS</h2>
+<h2 id="tilelayer-wms">TileLayer.WMS</h2>
 
 <p>Used to display WMS services as tile layers on the map. Extends <a href="reference.html#tilelayer">TileLayer</a>.</p>
 
@@ -1948,25 +2003,18 @@ var map = L.map('map', {
 	attribution: "Weather data © 2012 IEM Nexrad"
 });</code></pre>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="tilelayer-wms">
 <tr>
-<th class="width250">Constructor</th>
-		<th>Usage</th>
+<th class="width250">Factory</th>
+
 		<th>Description</th>
 	</tr>
-<tr>
-<td><code><b>L.TileLayer.WMS</b>(
+<tr><td><code><b>L.tileLayer.wms</b>(
 			<nobr>&lt;String&gt; <i>baseUrl</i></nobr>,
-			<nobr>&lt;<a href="reference.html#tilelayer-wms-options">TileLayer.WMS options</a>&gt; <i>options</i> )</nobr></code></td>
-
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.TileLayer.WMS(<span class="comment">…</span>)</code><br><code>L.tileLayer.wms(<span class="comment">…</span>)</code>
-		</td>
-
-		<td>Instantiates a WMS tile layer object given a base URL of the WMS service and a WMS parameters/options object.</td>
-	</tr>
+			<nobr>&lt;<a href="reference.html#tilelayer-wms-options">TileLayer.WMS options</a>&gt; <i>options</i> )</nobr><td>Instantiates a WMS tile layer object given a base URL of the WMS service and a WMS parameters/options object.</td>
+	</code></td></tr>
 </table>
 <h3 id="tilelayer-wms-options">Options</h3>
 
@@ -2033,7 +2081,7 @@ var map = L.map('map', {
 		<td>Merges an object with the new parameters and re-requests tiles on the current screen (unless <code>noRedraw</code> was set to <code><span class="literal">true</span></code>).</td>
 	</tr>
 </table>
-<h2 id="tilelayer-canvas">L.TileLayer.Canvas</h2>
+<h2 id="tilelayer-canvas">TileLayer.Canvas</h2>
 
 <p>Used to create Canvas-based tile layers where tiles get drawn on the browser side. Extends <a href="reference.html#tilelayer">TileLayer</a>.</p>
 
@@ -2046,20 +2094,18 @@ canvasTiles.drawTile = function(canvas, tilePoint, zoom) {
 	// draw something on the tile canvas
 }</code></pre>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="tilelayer-canvas">
 <tr>
-<th class="width200">Constructor</th>
-		<th>Usage</th>
+<th class="width200">Factory</th>
+
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.TileLayer.Canvas</b>(
+<td><code><b>L.tileLayer.canvas</b>(
 			<nobr>&lt;<a href="reference.html#tilelayer-options">TileLayer options</a>&gt; <i>options?</i> )</nobr></code></td>
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.TileLayer.Canvas(<span class="comment">…</span>)</code><br><code>L.tileLayer.canvas(<span class="comment">…</span>)</code>
-		</td>
+
 		<td>Instantiates a Canvas tile layer object given an options object (optionally).</td>
 	</tr>
 </table>
@@ -2100,7 +2146,7 @@ canvasTiles.drawTile = function(canvas, tilePoint, zoom) {
 		<td>If <code>async</code> option is defined, this function should be called for each tile after drawing completion. <code>canvas</code> is the same canvas element, that was passed to <a href="reference.html#tilelayer-canvas-drawtile">drawTile</a>.</td>
 	</tr>
 </table>
-<h2 id="imageoverlay">L.ImageOverlay</h2>
+<h2 id="imageoverlay">ImageOverlay</h2>
 
 <p>Used to load and display a single image over specific bounds of the map, implements <a href="reference.html#ilayer">ILayer</a> interface.</p>
 
@@ -2111,12 +2157,12 @@ canvasTiles.drawTile = function(canvas, tilePoint, zoom) {
 
 L.imageOverlay(imageUrl, imageBounds).addTo(map);</code></pre>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="imageoverlay">
 <tr>
-<th class="width250">Constructor</th>
-		<th>Usage</th>
+<th class="width250">Factory</th>
+
 		<th>Description</th>
 	</tr>
 <tr>
@@ -2125,9 +2171,6 @@ L.imageOverlay(imageUrl, imageBounds).addTo(map);</code></pre>
 			<nobr>&lt;<a href="reference.html#latlngbounds">LatLngBounds</a>&gt; <i>bounds</i></nobr>,
 			<nobr>&lt;<a href="reference.html#imageoverlay-options">ImageOverlay options</a>&gt; <i>options?</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.ImageOverlay(<span class="comment">…</span>)</code><br><code>L.imageOverlay(<span class="comment">…</span>)</code>
-		</td>
 
 		<td>Instantiates an image overlay object given the URL of the image and the geographical bounds it is tied to.</td>
 	</tr>
@@ -2145,6 +2188,12 @@ L.imageOverlay(imageUrl, imageBounds).addTo(map);</code></pre>
 		<td><code>Number</code></td>
 		<td><code><span class="number">1.0</span></code></td>
 		<td>The opacity of the image overlay.</td>
+	</tr>
+<tr>
+<td><code><b>attribution</b></code></td>
+		<td><code>String</code></td>
+		<td><code><span class="string">''</span></code></td>
+		<td>The attribution text of the image overlay.</td>
 	</tr>
 </table>
 <h3 id="imageoverlay-methods">Methods</h3>
@@ -2169,6 +2218,13 @@ L.imageOverlay(imageUrl, imageBounds).addTo(map);</code></pre>
 		<td>Sets the opacity of the overlay.</td>
 	</tr>
 <tr>
+<td><code><b>setUrl</b>(
+			<nobr>&lt;String&gt; <i>imageUrl</i> )</nobr></code></td>
+
+		<td><code><span class="keyword">this</span></code></td>
+		<td>Changes the URL of the image.</td>
+	</tr>
+<tr>
 <td><code><b>bringToFront</b>()</code></td>
 		<td><code><span class="keyword">this</span></code></td>
 		<td>Brings the layer to the top of all overlays.</td>
@@ -2179,7 +2235,7 @@ L.imageOverlay(imageUrl, imageBounds).addTo(map);</code></pre>
 		<td>Brings the layer to the bottom of all overlays.</td>
 	</tr>
 </table>
-<h2 id="path">L.Path</h2>
+<h2 id="path">Path</h2>
 <p>An abstract class that contains options and constants shared between vector overlays (Polygon, Polyline, Circle). Do not use it directly.
 
 </p>
@@ -2240,6 +2296,18 @@ L.imageOverlay(imageUrl, imageBounds).addTo(map);</code></pre>
 		<td>A string that defines the stroke <a href="https://developer.mozilla.org/en/SVG/Attribute/stroke-dasharray">dash pattern</a>. Doesn't work on canvas-powered layers (e.g. Android 2).</td>
 	</tr>
 <tr>
+<td><code><b>lineCap</b></code></td>
+		<td><code>String</code></td>
+		<td><code><span class="literal">null</span></code></td>
+		<td>A string that defines <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-linecap">shape to be used at the end</a> of the stroke.</td>
+	</tr>
+<tr>
+<td><code><b>lineJoin</b></code></td>
+		<td><code>String</code></td>
+		<td><code><span class="literal">null</span></code></td>
+		<td>A string that defines <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-linejoin">shape to be used at the corners</a> of the stroke.</td>
+	</tr>
+<tr>
 <td><code><b>clickable</b></code></td>
 		<td><code>Boolean</code></td>
 		<td><code><span class="literal">true</span></code></td>
@@ -2250,6 +2318,12 @@ L.imageOverlay(imageUrl, imageBounds).addTo(map);</code></pre>
 		<td><code>String</code></td>
 		<td><code><span class="literal">null</span></code></td>
 		<td>Sets the <code>pointer-events</code> attribute on the path if SVG backend is used.</td>
+	</tr>
+<tr>
+<td><code><b>className</b></code></td>
+		<td><code>String</code></td>
+		<td><code><span class="string">''</span></code></td>
+		<td>Custom class name set on an element.</td>
 	</tr>
 </table>
 <h3>Events</h3>
@@ -2425,7 +2499,7 @@ L.imageOverlay(imageUrl, imageBounds).addTo(map);</code></pre>
 		<td>How much to extend the clip area around the map view (relative to its size, e.g. 0.5 is half the screen in each direction). Smaller values mean that you will see clipped ends of paths while you're dragging the map, and bigger values decrease drawing performance.</td>
 	</tr>
 </table>
-<h2 id="polyline">L.Polyline</h2>
+<h2 id="polyline">Polyline</h2>
 
 <p>A class for drawing polyline overlays on a map. Extends <a href="reference.html#path">Path</a>. Use <a href="reference.html#map-addlayer">Map#addLayer</a> to add it to the map.</p>
 
@@ -2436,22 +2510,19 @@ var polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
 // zoom the map to the polyline
 map.fitBounds(polyline.getBounds());</code></pre>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="polyline">
 <tr>
-<th class="width250">Constructor</th>
-		<th>Usage</th>
+<th class="width250">Factory</th>
+
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.Polyline</b>(
+<td><code><b>L.polyline</b>(
 			<nobr>&lt;<a href="reference.html#latlng">LatLng</a>[]&gt; <i>latlngs</i></nobr>,
 			<nobr>&lt;<a href="reference.html#polyline-options">Polyline options</a>&gt; <i>options?</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.Polyline(<span class="comment">…</span>)</code><br><code>L.polyline(<span class="comment">…</span>)</code>
-		</td>
 
 		<td>Instantiates a polyline object given an array of geographical points and optionally an options object.</td>
 	</tr>
@@ -2529,26 +2600,24 @@ map.fitBounds(polyline.getBounds());</code></pre>
 		<td>Returns a <a href="http://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a> representation of the polyline (GeoJSON LineString Feature).</td>
 	</tr>
 </table>
-<h2 id="multipolyline">L.MultiPolyline</h2>
+<h2 id="multipolyline">MultiPolyline</h2>
 
 <p>Extends <a href="reference.html#featuregroup">FeatureGroup</a> to allow creating multi-polylines (single layer that consists of several polylines that share styling/popup).</p>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="multipolyline">
 <tr>
-<th>Constructor</th>
-		<th>Usage</th>
+<th>Factory</th>
+
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.MultiPolyline</b>(
+<td><code><b>L.multiPolyline</b>(
 			<nobr>&lt;<a href="reference.html#latlng">LatLng</a>[][]&gt; <i>latlngs</i></nobr>,
 			<nobr>&lt;<a href="reference.html#polyline-options">Polyline options</a>&gt; <i>options?</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.MultiPolyline(<span class="comment">…</span>)</code><br><code>L.multiPolyline(<span class="comment">…</span>)</code>
-		</td>
+
 
 		<td>Instantiates a multi-polyline object given an array of arrays of geographical points (one for each individual polyline) and optionally an options object.</td>
 	</tr>
@@ -2579,34 +2648,37 @@ multiple line features:</p>
 		<td><code><nobr>&lt;<a href="reference.html#latlng">LatLng</a>[][]&gt; <i>latlngs</i></nobr></code></td>
 		<td>Returns an array of arrays of geographical points in each line.</td>
     </tr>
+<tr>
+<td><code><b>openPopup</b>()</code></td>
+
+		<td><code>this</code></td>
+		<td>Opens the popup previously bound by <a href="reference.html#path-bindpopup">bindPopup</a>.</td>
+    </tr>
 <tr id="multipolyline-togeojson">
 <td><code><b>toGeoJSON</b>()</code></td>
 		<td><code>Object</code></td>
 		<td>Returns a <a href="http://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a> representation of the multipolyline (GeoJSON MultiLineString Feature).</td>
 	</tr>
 </table>
-<h2 id="polygon">L.Polygon</h2>
+<h2 id="polygon">Polygon</h2>
 
 <p>A class for drawing polygon overlays on a map. Extends <a href="reference.html#polyline">Polyline</a>. Use <a href="reference.html#map-addlayer">Map#addLayer</a> to add it to the map.</p>
 
 <p>Note that points you pass when creating a polygon shouldn't have an additional last point equal to the first one — it's better to filter out such points.</p>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="polygon">
 <tr>
-<th>Constructor</th>
-		<th>Usage</th>
+<th>Factory</th>
+
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.Polygon</b>(
+<td><code><b>L.polygon</b>(
 			<nobr>&lt;<a href="reference.html#latlng">LatLng</a>[]&gt; <i>latlngs</i></nobr>,
 			<nobr>&lt;<a href="reference.html#polyline-options">Polyline options</a>&gt; <i>options?</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.Polygon(<span class="comment">…</span>)</code><br><code>L.polygon(<span class="comment">…</span>)</code>
-		</td>
 
 		<td>Instantiates a polygon object given an array of geographical points and optionally an options object (the same as for Polyline). You can also create a polygon with holes by passing an array of arrays of latlngs, with the first latlngs array representing the exterior ring while the remaining represent the holes inside.</td>
 	</tr>
@@ -2627,26 +2699,23 @@ multiple line features:</p>
 		<td>Returns a <a href="http://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a> representation of the polygon (GeoJSON Polygon Feature).</td>
 	</tr>
 </table>
-<h2 id="multipolygon">L.MultiPolygon</h2>
+<h2 id="multipolygon">MultiPolygon</h2>
 
 <p>Extends <a href="reference.html#featuregroup">FeatureGroup</a> to allow creating multi-polygons (single layer that consists of several polygons that share styling/popup).</p>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="multipolygon">
 <tr>
-<th>Constructor</th>
-		<th>Usage</th>
+<th>Factory</th>
+
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.MultiPolygon</b>(
+<td><code><b>L.multiPolygon</b>(
 			<nobr>&lt;<a href="reference.html#latlng">LatLng</a>[][]&gt; <i>latlngs</i></nobr>,
 			<nobr>&lt;<a href="reference.html#polyline-options">Polyline options</a>&gt; <i>options?</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.MultiPolygon(<span class="comment">…</span>)</code><br><code>L.multiPolygon(<span class="comment">…</span>)</code>
-		</td>
 
 		<td>Instantiates a multi-polygon object given an array of latlngs arrays (one for each individual polygon) and optionally an options object (the same as for MultiPolyline).</td>
 	</tr>
@@ -2677,13 +2746,19 @@ multiple polygon features:</p>
 		<td><code><nobr>&lt;<a href="reference.html#latlng">LatLng</a>[][]&gt; <i>latlngs</i></nobr></code></td>
 		<td>Returns an array of arrays of geographical points in each polygon.</td>
     </tr>
+<tr>
+<td><code><b>openPopup</b>()</code></td>
+
+		<td><code>this</code></td>
+		<td>Opens the popup previously bound by <a href="reference.html#path-bindpopup">bindPopup</a>.</td>
+    </tr>
 <tr id="multipolygon-togeojson">
 <td><code><b>toGeoJSON</b>()</code></td>
 		<td><code>Object</code></td>
 		<td>Returns a <a href="http://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a> representation of the multipolygon (GeoJSON MultiPolygon Feature).</td>
 	</tr>
 </table>
-<h2 id="rectangle">L.Rectangle</h2>
+<h2 id="rectangle">Rectangle</h2>
 
 <p>A class for drawing rectangle overlays on a map. Extends <a href="reference.html#polygon">Polygon</a>. Use <a href="reference.html#map-addlayer">Map#addLayer</a> to add it to the map.</p>
 
@@ -2697,22 +2772,19 @@ L.rectangle(bounds, {color: "#ff7800", weight: 1}).addTo(map);
 // zoom the map to the rectangle bounds
 map.fitBounds(bounds);</code></pre>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="rectangle">
 <tr>
-<th class="width250">Constructor</th>
-		<th>Usage</th>
+<th class="width250">Factory</th>
+
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.Rectangle</b>(
+<td><code><b>L.rectangle</b>(
 			<nobr>&lt;<a href="reference.html#latlngbounds">LatLngBounds</a>&gt; <i>bounds</i></nobr>,
 			<nobr>&lt;<a href="reference.html#path-options">Path options</a>&gt; <i>options?</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.Rectangle(<span class="comment">…</span>)</code><br><code>L.rectangle(<span class="comment">…</span>)</code>
-		</td>
 
 		<td>Instantiates a rectangle object with the given geographical bounds and optionally an options object.</td>
 	</tr>
@@ -2735,29 +2807,26 @@ map.fitBounds(bounds);</code></pre>
 		<td>Redraws the rectangle with the passed bounds.</td>
 	</tr>
 </table>
-<h2 id="circle">L.Circle</h2>
+<h2 id="circle">Circle</h2>
 
 <p>A class for drawing circle overlays on a map. Extends <a href="reference.html#path">Path</a>. Use <a href="reference.html#map-addlayer">Map#addLayer</a> to add it to the map.</p>
 
 <pre><code class="javascript">L.circle([50.5, 30.5], 200).addTo(map);</code></pre>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="circle">
 <tr>
-<th>Constructor</th>
-		<th>Usage</th>
+<th>Factory</th>
+
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.Circle</b>(
+<td><code><b>L.circle</b>(
 			<nobr>&lt;<a href="reference.html#latlng">LatLng</a>&gt; <i>latlng</i></nobr>,
 			<nobr>&lt;Number&gt; <i>radius</i></nobr>,
 			<nobr>&lt;<a href="reference.html#path-options">Path options</a>&gt; <i>options?</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.Circle(<span class="comment">…</span>)</code><br><code>L.circle(<span class="comment">…</span>)</code>
-		</td>
 
 		<td>Instantiates a circle object given a geographical point, a radius in meters and optionally an options object.</td>
 	</tr>
@@ -2800,26 +2869,23 @@ map.fitBounds(bounds);</code></pre>
 		<td>Returns a <a href="http://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a> representation of the circle (GeoJSON Point Feature).</td>
 	</tr>
 </table>
-<h2 id="circlemarker">L.CircleMarker</h2>
+<h2 id="circlemarker">CircleMarker</h2>
 
 <p>A circle of a fixed size with radius specified in pixels. Extends <a href="reference.html#circle">Circle</a>. Use <a href="reference.html#map-addlayer">Map#addLayer</a> to add it to the map.</p>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="circlemarker">
 <tr>
-<th class="width200">Constructor</th>
-		<th>Usage</th>
+<th class="width200">Factory</th>
+
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.CircleMarker</b>(
+<td><code><b>L.circleMarker</b>(
 			<nobr>&lt;<a href="reference.html#latlng">LatLng</a>&gt; <i>latlng</i></nobr>,
 			<nobr>&lt;<a href="reference.html#path-options">Path options</a>&gt; <i>options?</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.CircleMarker(<span class="comment">…</span>)</code><br><code>L.circleMarker(<span class="comment">…</span>)</code>
-		</td>
 
 		<td>Instantiates a circle marker given a geographical point and optionally an options object. The default radius is 10 and can be altered by passing a "radius" member in the path options object.</td>
 	</tr>
@@ -2852,7 +2918,7 @@ map.fitBounds(bounds);</code></pre>
 		<td>Returns a <a href="http://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a> representation of the circle marker (GeoJSON Point Feature).</td>
 	</tr>
 </table>
-<h2 id="layergroup">L.LayerGroup</h2>
+<h2 id="layergroup">LayerGroup</h2>
 
 <p>Used to group several layers and handle them as one. If you add it to the map, any layers added or removed from the group will be added/removed on the map as well. Implements <a href="reference.html#ilayer">ILayer</a> interface.</p>
 
@@ -2860,21 +2926,17 @@ map.fitBounds(bounds);</code></pre>
 	.addLayer(polyline)
 	.addTo(map);</code></pre>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="layergroup">
 <tr>
-<th class="width250">Constructor</th>
-		<th>Usage</th>
+<th class="width250">Factory</th>
 		<th>Description</th>
 	</tr>
 <tr>
 <td><code><b>L.LayerGroup</b>(
 			<nobr>&lt;<a href="reference.html#ilayer">ILayer</a>[]&gt; <i>layers?</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.LayerGroup(<span class="comment">…</span>)</code><br><code>L.layerGroup(<span class="comment">…</span>)</code>
-		</td>
 
 		<td>Create a layer group, optionally given an initial set of layers.</td>
 	</tr>
@@ -2926,7 +2988,7 @@ map.fitBounds(bounds);</code></pre>
 <td><code><b>getLayer</b>(
 			<nobr>&lt;String&gt; <i>id</i> )</nobr></code></td>
 
-		<td><code>Boolean</code></td>
+		<td><code><a href="reference.html#ilayer">ILayer</a></code></td>
 		<td>Returns the layer with the given id.</td>
 	</tr>
 <tr>
@@ -2956,37 +3018,35 @@ map.fitBounds(bounds);</code></pre>
 		<td>Returns a <a href="http://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a> representation of the layer group (GeoJSON FeatureCollection).</td>
 	</tr>
 </table>
-<h2 id="featuregroup">L.FeatureGroup</h2>
+<h2 id="featuregroup">FeatureGroup</h2>
 
-<p>Extended <a href="reference.html#layergroup">LayerGroup</a> that also has mouse events (propagated from members of the group) and a shared bindPopup method. Implements <a href="reference.html#ilayer">ILayer</a> interface.</p>
+<p>Extended <a href="reference.html#layergroup">layerGroup</a> that also has mouse events (propagated from members of the group) and a shared bindPopup method. Implements <a href="reference.html#ilayer">ILayer</a> interface.</p>
 
 <pre><code class="javascript">L.featureGroup([marker1, marker2, polyline])
 	.bindPopup('Hello world!')
 	.on('click', function() { alert('Clicked on a group!'); })
 	.addTo(map);</code></pre>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="featuregroup">
 <tr>
-<th class="width300">Constructor</th>
-		<th>Usage</th>
+<th class="width300">Factory</th>
+
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.FeatureGroup</b>(
+<td><code><b>L.featureGroup</b>(
 			<nobr>&lt;<a href="reference.html#ilayer">ILayer</a>[]&gt; <i>layers?</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.FeatureGroup(<span class="comment">…</span>)</code><br><code>L.featureGroup(<span class="comment">…</span>)</code>
-		</td>
+
 
 		<td>Create a layer group, optionally given an initial set of layers.</td>
 	</tr>
 </table>
 <h3>Methods</h3>
 
-<p>Has all <a href="reference.html#layergroup">LayerGroup</a> methods and additionally:</p>
+<p>Has all <a href="reference.html#layergroup">layerGroup</a> methods and additionally:</p>
 
 <table data-id="featuregroup">
 <tr>
@@ -3079,7 +3139,7 @@ map.fitBounds(bounds);</code></pre>
 <td>Fired when a layer is removed from the map.</td>
 	</tr>
 </table>
-<h2 id="geojson">L.GeoJSON</h2>
+<h2 id="geojson">GeoJson</h2>
 
 <p>Represents a <a href="http://geojson.org/geojson-spec.html">GeoJSON</a> layer. Allows you to parse GeoJSON data and display it on the map. Extends <a href="reference.html#featuregroup">FeatureGroup</a>.</p>
 
@@ -3094,22 +3154,17 @@ map.fitBounds(bounds);</code></pre>
 
 <p>Each feature layer created by it gets a <code>feature</code> property that links to the GeoJSON feature data the layer was created from (so that you can access its properties later).</p>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="geojson">
 <tr>
-<th>Constructor</th>
-		<th>Usage</th>
+<th>Factory</th>
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.GeoJSON</b>(
+<td><code><b>L.geoJson</b>(
 			<nobr>&lt;Object&gt; <i>geojson?</i></nobr>,
 			<nobr>&lt;<a href="reference.html#geojson-options">GeoJSON options</a>&gt; <i>options?</i> )</nobr></code></td>
-
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.GeoJSON(<span class="comment">…</span>)</code><br><code>L.geoJson(<span class="comment">…</span>)</code>
-		</td>
 
 		<td>Creates a GeoJSON layer. Optionally accepts an object in <a href="http://geojson.org/geojson-spec.html">GeoJSON format</a> to display on the map (you can alternatively add it later with <code>addData</code> method) and an options object.</td>
 	</tr>
@@ -3156,6 +3211,8 @@ map.fitBounds(bounds);</code></pre>
 		<td>Function that will be used for converting GeoJSON coordinates to <a href="reference.html#latlng">LatLng</a> points (if not specified, coords will be assumed to be WGS84 — standard <code>[longitude, latitude]</code> values in degrees).</td>
 	</tr>
 </table>
+<p>Additionally accepts all <a href="reference.html#path-options">Path options</a> for polylines and polygons.</p>
+
 <h3>Methods</h3>
 
 <table data-id="geojson">
@@ -3168,7 +3225,7 @@ map.fitBounds(bounds);</code></pre>
 <td><code><b>addData</b>(
 			<nobr>&lt;GeoJSON&gt; <i>data</i> )</nobr></code></td>
 
-		<td><code>Boolean</code></td>
+		<td><code>this</code></td>
 		<td>Adds a GeoJSON object to the layer.</td>
 	</tr>
 <tr id="geojson-setstyle">
@@ -3220,36 +3277,34 @@ map.fitBounds(bounds);</code></pre>
 		<td>Creates a multidimensional array of LatLng objects from a GeoJSON coordinates array. <code>levelsDeep</code> specifies the nesting level (0 is for an array of points, 1 for an array of arrays of points, etc., 0 by default). If <code>reverse</code> is set to <code><span class="literal">true</span></code>, the numbers will be interpreted as (longitude, latitude).</td>
 	</tr>
 </table>
-<h2 id="latlng">L.LatLng</h2>
+<h2 id="latlng">LatLng</h2>
 
 <p>Represents a geographical point with a certain latitude and longitude.</p>
-<pre><code class="javascript">var latlng = new L.LatLng(50.5, 30.5);</code></pre>
+<pre><code class="javascript">var latlng = L.latLng(50.5, 30.5);</code></pre>
 
 <p>All Leaflet methods that accept LatLng objects also accept them in a simple Array form and simple object form (unless noted otherwise), so these lines are equivalent:</p>
 
 <pre><code>map.panTo([50, 30]);
 map.panTo({lon: 30, lat: 50});
 map.panTo({lat: 50, lng: 30});
-map.panTo(new L.LatLng(50, 30));</code></pre>
+map.panTo(L.latLng(50, 30));</code></pre>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="latlng">
 <tr>
-<th class="width200">Constructor</th>
-		<th>Usage</th>
+<th class="width200">Factory</th>
+
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.LatLng</b>(
+<td><code><b>L.latLng</b>(
 			<nobr>&lt;Number&gt; <i>latitude</i></nobr>,
-			<nobr>&lt;Number&gt; <i>longitude</i> )</nobr></code></td>
+			<nobr>&lt;Number&gt; <i>longitude</i></nobr>,
+			<nobr>&lt;Number&gt; <i>altitude?</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.LatLng(<span class="comment">…</span>)</code><br><code>L.latLng(<span class="comment">…</span>)</code><br><code>L.latLng([<span class="comment">…</span>])</code>
-		</td>
 
-		<td>Creates an object representing a geographical point with the given latitude and longitude.</td>
+		<td>Creates an object representing a geographical point with the given latitude and longitude (and optionally altitude).</td>
 	</tr>
 </table>
 <h3>Properties</h3>
@@ -3336,12 +3391,12 @@ map.panTo(new L.LatLng(50, 30));</code></pre>
 		<td>Max margin of error for the equality check.</td>
 	</tr>
 </table>
-<h2 id="latlngbounds">L.LatLngBounds</h2>
+<h2 id="latlngbounds">LatLngBounds</h2>
 
 <p>Represents a rectangular geographical area on a map.</p>
-<pre><code class="javascript">var southWest = new L.LatLng(40.712, -74.227),
-	northEast = new L.LatLng(40.774, -74.125),
-	bounds = new L.LatLngBounds(southWest, northEast);</code></pre>
+<pre><code class="javascript">var southWest = L.latLng(40.712, -74.227),
+	northEast = L.latLng(40.774, -74.125),
+	bounds = L.latLngBounds(southWest, northEast);</code></pre>
 
 <p>All Leaflet methods that accept LatLngBounds objects also accept them in a simple Array form (unless noted otherwise), so the bounds example above can be passed like this:</p>
 
@@ -3350,33 +3405,28 @@ map.panTo(new L.LatLng(50, 30));</code></pre>
 	[40.774, -74.125]
 ]);</code></pre>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="latlngbounds">
 <tr>
-<th class="width250">Constructor</th>
-		<th>Usage</th>
+<th class="width250">Factory</th>
 		<th>Description</th>
 	</tr>
 <tr>
 <td>
-			<code><b>L.LatLngBounds</b>(
+			<code><b>L.latLngBounds</b>(
 			<nobr>&lt;<a href="reference.html#latlng">LatLng</a>&gt; <i>southWest</i></nobr>,
 			<nobr>&lt;<a href="reference.html#latlng">LatLng</a>&gt; <i>northEast</i></nobr> )</code>
 		</td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.LatLngBounds(<span class="comment">…</span>)</code><br><code>L.latLngBounds(<span class="comment">…</span>)</code><br><code>L.latLngBounds([<span class="comment">…</span>])</code>
-		</td>
 
-		<td>Creates a LatLngBounds object by defining south-west and north-east corners of the rectangle.</td>
+
+		<td>Creates a latLngBounds object by defining south-west and north-east corners of the rectangle.</td>
 	</tr>
 <tr>
-<td><code><b>L.LatLngBounds</b>(
+<td><code><b>L.latLngBounds</b>(
 			<nobr>&lt;<a href="reference.html#latlng">LatLng</a>[]&gt; <i>latlngs</i> )</nobr></code></td>
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.LatLngBounds(<span class="comment">…</span>)</code><br><code>L.latLngBounds(<span class="comment">…</span>)</code>
-		</td>
+
 		<td>Creates a LatLngBounds object defined by the geographical points it contains. Very useful for zooming the map to fit a particular set of locations with <a href="reference.html#map-fitbounds">fitBounds</a>.</td>
 	</tr>
 </table>
@@ -3488,33 +3538,28 @@ map.panTo(new L.LatLng(50, 30));</code></pre>
 		<td>Returns <code><span class="literal">true</span></code> if the bounds are properly initialized.</td>
 	</tr>
 </table>
-<h2 id="point">L.Point</h2>
+<h2 id="point">Point</h2>
 
 <p>Represents a point with x and y coordinates in pixels.</p>
 
-<pre><code>var point = new L.Point(200, 300);</code></pre>
+<pre><code>var point = L.point(200, 300);</code></pre>
 
 <p>All Leaflet methods and options that accept Point objects also accept them in a simple Array form (unless noted otherwise), so these lines are equivalent:</p>
 
 <pre><code>map.panBy([200, 300]);
-map.panBy(new L.Point(200, 300));</code></pre>
+map.panBy(L.point(200, 300));</code></pre>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="point">
 <tr>
-<th class="width250">Constructor</th>
-		<th>Usage</th>
+<th class="width250">Factory</th>
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.Point</b>(
+<td><code><b>L.point</b>(
 			<nobr>&lt;Number&gt; <i>x</i>, &lt;Number&gt; <i>y</i></nobr>,
 			<nobr>&lt;Boolean&gt; <i>round?</i> )</nobr></code></td>
-
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.Point(<span class="comment">…</span>)</code><br><code>L.point(<span class="comment">…</span>)</code><br><code>L.point([<span class="comment">…</span>])</code>
-		</td>
 
 		<td>Creates a Point object with the given <code>x</code> and <code>y</code> coordinates. If optional <code>round</code> is set to <code><span class="literal">true</span></code>, rounds the <code>x</code> and <code>y</code> values.</td>
 	</tr>
@@ -3593,6 +3638,11 @@ map.panBy(new L.Point(200, 300));</code></pre>
 		<td>Returns a copy of the current point with rounded coordinates.</td>
 	</tr>
 <tr>
+<td><code><b>floor</b>()</code></td>
+		<td><code><a href="reference.html#point">Point</a></code></td>
+		<td>Returns a copy of the current point with floored coordinates (rounded down).</td>
+	</tr>
+<tr>
 <td><code><b>equals</b>(
 			<nobr>&lt;<a href="reference.html#point">Point</a>&gt; <i>otherPoint</i> )</nobr></code></td>
 
@@ -3600,48 +3650,50 @@ map.panBy(new L.Point(200, 300));</code></pre>
 		<td>Returns <code><span class="literal">true</span></code> if the given point has the same coordinates.</td>
 	</tr>
 <tr>
+<td><code><b>contains</b>(
+			<nobr>&lt;<a href="reference.html#point">Point</a>&gt; <i>otherPoint</i> )</nobr></code></td>
+
+		<td><code>Boolean</code></td>
+		<td>Returns <code><span class="literal">true</span></code> if the both coordinates of the given point are less than the corresponding current point coordinates (in absolute values).</td>
+	</tr>
+<tr>
 <td><code><b>toString</b>()</code></td>
 		<td><code>String</code></td>
 		<td>Returns a string representation of the point for debugging purposes.</td>
 	</tr>
 </table>
-<h2 id="bounds">L.Bounds</h2>
+<h2 id="bounds">Bounds</h2>
 
 <p>Represents a rectangular area in pixel coordinates.</p>
-<pre><code class="javascript">var p1 = new L.Point(10, 10),
-	p2 = new L.Point(40, 60),
-	bounds = new L.Bounds(p1, p2);</code></pre>
+<pre><code class="javascript">var p1 = L.point(10, 10),
+	p2 = L.point(40, 60),
+	bounds = L.bounds(p1, p2);</code></pre>
 
 <p>All Leaflet methods that accept Bounds objects also accept them in a simple Array form (unless noted otherwise), so the bounds example above can be passed like this:</p>
 
 <pre><code class="javascript">otherBounds.intersects([[10, 10], [40, 60]]);</code></pre>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="bounds">
 <tr>
-<th class="width250">Constructor</th>
-		<th>Usage</th>
+<th class="width250">Factory</th>
+
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.Bounds</b>(
+<td><code><b>L.bounds</b>(
 			<nobr>&lt;<a href="reference.html#point">Point</a>&gt; <i>topLeft</i></nobr>,
 			<nobr>&lt;<a href="reference.html#point">Point</a>&gt; <i>bottomRight</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.Bounds(<span class="comment">…</span>)</code><br><code>L.bounds(<span class="comment">…</span>)</code><br><code>L.bounds([<span class="comment">…</span>])</code>
-		</td>
 
 		<td>Creates a Bounds object from two coordinates (usually top-left and bottom-right corners).</td>
 	</tr>
 <tr>
-<td><code><b>L.Bounds</b>(
+<td><code><b>L.bounds</b>(
 			<nobr>&lt;<a href="reference.html#point">Point</a>[]&gt; <i>points</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.Bounds(<span class="comment">…</span>)</code><br><code>L.bounds(<span class="comment">…</span>)</code>
-		</td>
+
 
 		<td>Creates a Bounds object defined by the points it contains.</td>
 	</tr>
@@ -3719,7 +3771,7 @@ map.panBy(new L.Point(200, 300));</code></pre>
 		<td>Returns the size of the given bounds.</td>
 	</tr>
 </table>
-<h2 id="icon">L.Icon</h2>
+<h2 id="icon">Icon</h2>
 
 <p>Represents an icon to provide when creating a marker.</p>
 
@@ -3739,21 +3791,18 @@ L.marker([50.505, 30.57], {icon: myIcon}).addTo(map);</code></pre>
 
 <p><code>L.Icon.Default</code> extends <code>L.Icon</code> and is the blue icon Leaflet uses for markers by default.</p>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="icon">
 <tr>
-<th class="width250">Constructor</th>
-		<th>Usage</th>
+<th class="width250">Factory</th>
+
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.Icon</b>(
+<td><code><b>L.icon</b>(
 			<nobr>&lt;<a href="reference.html#icon-options">Icon options</a>&gt; <i>options</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.Icon(<span class="comment">…</span>)</code><br><code>L.icon(<span class="comment">…</span>)</code>
-		</td>
 
 		<td>Creates an icon instance with the given options.</td>
 	</tr>
@@ -3827,7 +3876,7 @@ L.marker([50.505, 30.57], {icon: myIcon}).addTo(map);</code></pre>
 <td>A custom class name to assign to both icon and shadow images. Empty by default.</td>
 	</tr>
 </table>
-<h2 id="divicon">L.DivIcon</h2>
+<h2 id="divicon">DivIcon</h2>
 
 <p>Represents a lightweight icon for markers that uses a simple <code>div</code> element instead of an image.</p>
 
@@ -3838,21 +3887,19 @@ L.marker([50.505, 30.57], {icon: myIcon}).addTo(map);</code></pre>
 
 <p>By default, it has a <code><span class="string">'leaflet-div-icon'</span></code> class and is styled as a little white square with a shadow.</p>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="divicon">
 <tr>
-<th class="width250">Constructor</th>
-		<th>Usage</th>
+<th class="width250">Factory</th>
+
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.DivIcon</b>(
+<td><code><b>L.divIcon</b>(
 			<nobr>&lt;<a href="reference.html#divicon-options">DivIcon options</a>&gt; <i>options</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.DivIcon(<span class="comment">…</span>)</code><br><code>L.divIcon(<span class="comment">…</span>)</code>
-		</td>
+
 
 		<td>Creates a div icon instance with the given options.</td>
 	</tr>
@@ -3890,7 +3937,7 @@ L.marker([50.505, 30.57], {icon: myIcon}).addTo(map);</code></pre>
 <td>A custom HTML code to put inside the div element, empty by default.</td>
 	</tr>
 </table>
-<h2 id="control">L.Control</h2>
+<h2 id="control">Control</h2>
 
 <p>The base class for all Leaflet controls. Implements <a href="reference.html#icontrol">IControl</a> interface. You can add controls to the map like this:</p>
 
@@ -3898,20 +3945,18 @@ L.marker([50.505, 30.57], {icon: myIcon}).addTo(map);</code></pre>
 // the same as
 map.addControl(control);</code></pre>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 <table data-id="control">
 <tr>
-<th class="width300">Constructor</th>
-		<th class="minwidth">Usage</th>
+<th class="width300">Factory</th>
+
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.Control</b>(
+<td><code><b>L.control</b>(
 			<nobr>&lt;<a href="reference.html#control-options">Control options</a>&gt; <i>options?</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.Control(<span class="comment">…</span>)</code><br><code>L.control(<span class="comment">…</span>)</code>
-		</td>
+
 
 		<td>Creates a control with the given options.</td>
 	</tr>
@@ -3996,24 +4041,21 @@ map.addControl(control);</code></pre>
 		<td>Bottom right of the map.</td>
 	</tr>
 </table>
-<h2 id="control-zoom">L.Control.Zoom</h2>
+<h2 id="control-zoom">Control.zoom</h2>
 
 <p>A basic zoom control with two buttons (zoom in and zoom out). It is put on the map by default unless you set its <code>zoomControl</code> option to <code><span class="literal">false</span></code>. Extends <a href="reference.html#control">Control</a>.</p>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 <table data-id="control-zoom">
 <tr>
-<th>Constructor</th>
-		<th>Usage</th>
+<th>Factory</th>
+
 		<th class="width200">Description</th>
 	</tr>
 <tr>
-<td><code><b>L.Control.Zoom</b>(
+<td><code><b>L.control.zoom</b>(
 			<nobr>&lt;<a href="reference.html#control-zoom-options">Control.Zoom options</a>&gt; <i>options?</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.Control.Zoom(<span class="comment">…</span>)</code><br><code>L.control.zoom(<span class="comment">…</span>)</code>
-		</td>
 
 		<td>Creates a zoom control.</td>
 	</tr>
@@ -4032,25 +4074,47 @@ map.addControl(control);</code></pre>
 		<td><code><span class="string">'topleft'</span></code></td>
 		<td>The position of the control (one of the map corners). See <a href="reference.html#control-positions">control positions</a>.</td>
 	</tr>
+<tr>
+<td><code><b>zoomInText</b></code></td>
+		<td><code>String</code></td>
+		<td><code><span class="string">'+'</span></code></td>
+		<td>The text set on the zoom in button.</td>
+	</tr>
+<tr>
+<td><code><b>zoomOutText</b></code></td>
+		<td><code>String</code></td>
+		<td><code><span class="string">'-'</span></code></td>
+		<td>The text set on the zoom out button.</td>
+	</tr>
+<tr>
+<td><code><b>zoomInTitle</b></code></td>
+		<td><code>String</code></td>
+		<td><code><span class="string">'Zoom in'</span></code></td>
+		<td>The title set on the zoom in button.</td>
+	</tr>
+<tr>
+<td><code><b>zoomOutTitle</b></code></td>
+		<td><code>String</code></td>
+		<td><code><span class="string">'Zoom out'</span></code></td>
+		<td>The title set on the zoom out button.</td>
+	</tr>
 </table>
-<h2 id="control-attribution">L.Control.Attribution</h2>
+<h2 id="control-attribution">Control.Attribution</h2>
 
 <p>The attribution control allows you to display attribution data in a small text box on a map. It is put on the map by default unless you set its <code>attributionControl</code> option to <code><span class="literal">false</span></code>, and it fetches attribution texts from layers with <code>getAttribution</code> method automatically. Extends <a href="reference.html#control">Control</a>.</p>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 <table data-id="control-attribution">
 <tr>
-<th class="width200">Constructor</th>
-		<th>Usage</th>
+<th class="width200">Factory</th>
+
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.Control.Attribution</b>(
+<td><code><b>L.control.attribution</b>(
 			<nobr>&lt;<a href="reference.html#control-attribution-options">Control.Attribution options</a>&gt; <i>options?</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.Control.Attribution(<span class="comment">…</span>)</code><br><code>L.control.attribution(<span class="comment">…</span>)</code>
-		</td>
+
 
 		<td>Creates an attribution control.</td>
 	</tr>
@@ -4072,7 +4136,7 @@ map.addControl(control);</code></pre>
 <tr>
 <td><code><b>prefix</b></code></td>
 		<td><code>String</code></td>
-		<td><code><span class="string">'Powered by Leaflet'</span></code></td>
+		<td><code><span class="string">'Leaflet'</span></code></td>
 		<td>The HTML text shown before the attributions. Pass <code><span class="literal">false</span></code> to disable.</td>
 	</tr>
 </table>
@@ -4102,7 +4166,7 @@ map.addControl(control);</code></pre>
 		<td>Removes an attribution text.</td>
 	</tr>
 </table>
-<h2 id="control-layers">L.Control.Layers</h2>
+<h2 id="control-layers">Control.Layers</h2>
 
 <p>The layers control gives users the ability to switch between different base layers and switch overlays on/off (check out the <a href="http://leafletjs.com/examples/layers-control.html">detailed example</a>). Extends <a href="reference.html#control">Control</a>.</p>
 
@@ -4118,21 +4182,18 @@ var overlays = {
 
 L.control.layers(baseLayers, overlays).addTo(map);</code></pre>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 <table data-id="control-layers">
 <tr>
-<th>Constructor</th>
-		<th>Usage</th>
+<th>Factory</th>
+
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.Control.Layers</b>(
+<td><code><b>L.control.layers</b>(
 			<nobr>&lt;<a href="reference.html#control-layers-config">Layer Config</a>&gt; <i>baseLayers?</i></nobr>,
 			<nobr>&lt;<a href="reference.html#control-layers-config">Layer Config</a>&gt; <i>overlays?</i></nobr>,
 			<nobr>&lt;<a href="reference.html#control-layers-options">Control.Layers options</a>&gt; <i>options?</i> )</nobr></code></td>
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.Control.Layers(<span class="comment">…</span>)</code><br><code>L.control.layers(<span class="comment">…</span>)</code>
-		</td>
 		<td>Creates an attribution control with the given layers. Base layers will be switched with radio buttons, while overlays will be switched with checkboxes. Note that all base layers should be passed in the base layers object, but only one should be added to the map during map instantiation.</td>
 	</tr>
 </table>
@@ -4238,26 +4299,24 @@ L.control.layers(baseLayers, overlays).addTo(map);</code></pre>
 <td>Fired when an overlay is deselected through the control.</td>
 	</tr>
 </table>
-<h2 id="control-scale">L.Control.Scale</h2>
+<h2 id="control-scale">Control.Scale</h2>
 
-<p>A simple scale control that shows the scale of the current center of screen in metric (m/km) and imperial (mi/ft) systems. Implements <a href="reference.html#icontrol">IControl</a> interface.</p>
+<p>A simple scale control that shows the scale of the current center of screen in metric (m/km) and imperial (mi/ft) systems. Extends <a href="reference.html#control">Control</a>.</p>
 
 <pre><code>L.control.scale().addTo(map);</code></pre>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 <table data-id="control-scale">
 <tr>
-<th class="width200">Constructor</th>
-		<th>Usage</th>
+<th class="width200">Factory</th>
+
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.Control.Scale</b>(
+<td><code><b>L.control.scale</b>(
 			<nobr>&lt;<a href="reference.html#control-scale-options">Control.Scale options</a>&gt; <i>options?</i> )</nobr></code></td>
 
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.Control.Scale(<span class="comment">…</span>)</code><br><code>L.control.scale(<span class="comment">…</span>)</code>
-		</td>
+
 
 		<td>Creates an scale control with the given options.</td>
 	</tr>
@@ -4392,7 +4451,7 @@ map.off('click', onClick);</code></pre>
 		<td>Fires an event of the specified type. You can optionally provide an data object — the first argument of the listener function will contain its properties.</td>
 	</tr>
 <tr>
-<td><code><b>cleanAllEventListeners</b>()</code></td>
+<td><code><b>clearAllEventListeners</b>()</code></td>
 
 		<td><code><span class="keyword">this</span></code></td>
 		<td>Removes all listeners to all events on the object.</td>
@@ -4449,7 +4508,7 @@ map.off('click', onClick);</code></pre>
 </table>
 <h3 id="mouse-event">MouseEvent</h3>
 
-<table>
+<table data-id="events">
 <tr>
 <th class="width100">property</th>
 		<th>type</th>
@@ -4658,7 +4717,21 @@ map.off('click', onClick);</code></pre>
 		<td>The popup that was opened or closed.</td>
 	</tr>
 </table>
-<!-- <h3>TileEvent</h3> --><h2 id="class">L.Class</h2>
+<h3 id="dragend-event">DragEndEvent</h3>
+
+<table data-id="layer-event">
+<tr>
+<th class="width100">property</th>
+		<th class="width100">type</th>
+		<th>description</th>
+	</tr>
+<tr>
+<td><code><b>distance</b></code></td>
+		<td><code>Number</code></td>
+		<td>The distance in pixels the draggable element was moved by.</td>
+	</tr>
+</table>
+<!-- <h3>TileEvent</h3> --><h2 id="class">Class</h2>
 
 <p><code>L.Class</code> powers the OOP facilities of Leaflet and is used to create almost all of the Leaflet classes documented here.</p>
 <p>In addition to implementing a simple classical inheritance model, it introduces several special properties for convenient code organization — <code>options</code>, <code>includes</code> and <code>statics</code>.</p>
@@ -4680,6 +4753,21 @@ var a = new MyClass("Hello");
 // call greet method, alerting "Hello, World"
 a.greet("World");
 </code></pre>
+
+
+<h3>Class Factories</h3>
+
+<p>You may have noticed that Leaflet objects are created without using the <code>new</code> keyword. This is achieved by complementing each class with a lowercase factory method:</p>
+
+<pre><code>new L.Map('map'); // becomes:
+L.map('map');</code></pre>
+
+<p>The factories are implemented very easily, and you can do this for your own classes:</p>
+
+<pre><code>L.map = function (id, options) {
+	return new L.Map(id, options);
+};</code></pre>
+
 
 <h3>Inheritance</h3>
 
@@ -4785,20 +4873,6 @@ a.foo();</code></pre>
 MyClass.FOO; // 'bar'</code></pre>
 
 
-<h3>Class Factories</h3>
-
-<p>You may have noticed that you can create Leaflet class instances in two ways — using the <code>new</code> keyword, or using lowercase factory method:</p>
-
-<pre><code>new L.Map('map');
-L.map('map');</code></pre>
-
-<p>The second way is implemented very easily, and you can do this for your own classes:</p>
-
-<pre><code>L.map = function (id, options) {
-	return new L.Map(id, options);
-};</code></pre>
-
-
 <h3>Constructor Hooks</h3>
 
 <p>If you're a plugin developer, you often need to add additional initialization code to existing classes (e.g. editing hooks for <code>L.Polyline</code>). Leaflet comes with a way to do it easily using the <code>addInitHook</code> method:</p>
@@ -4813,7 +4887,7 @@ L.map('map');</code></pre>
 <pre><code>MyClass.addInitHook('methodName', arg1, arg2, …);</code></pre>
 
 
-<h2 id="browser">L.Browser</h2>
+<h2 id="browser">Browser</h2>
 
 <p>A namespace with properties for browser/feature detection used by Leaflet internally.</p>
 
@@ -4915,7 +4989,7 @@ L.map('map');</code></pre>
 <code><span class="literal">true</span></code> for devices with Retina screens.</td>
 	</tr>
 </table>
-<h2 id="util">L.Util</h2>
+<h2 id="util">Util</h2>
 
 <p>Various utility functions, used by Leaflet internally.</p>
 
@@ -5040,35 +5114,28 @@ L.map('map');</code></pre>
 		<td>Data URI string containing a base64-encoded empty GIF image. Used as a hack to free memory from unused images on WebKit-powered mobile devices (by setting image <code>src</code> to this string).</td>
 	</tr>
 </table>
-<h2 id="transformation">L.Transformation</h2>
+<h2 id="transformation">Transformation</h2>
 
 <p>Represents an affine transformation: a set of coefficients <code>a</code>, <code>b</code>, <code>c</code>, <code>d</code> for transforming a point of a form <code>(x, y)</code> into <code>(a*x + b, c*y + d)</code> and doing the reverse. Used by Leaflet in its projections code.</p>
 
 <pre><code>var transformation = new L.Transformation(2, 5, -1, 10),
-	p = new L.Point(1, 2),
-	p2 = transformation.transform(p), // new L.Point(7, 8)
-	p3 = transformation.untransform(p2); // new L.Point(1, 2)
+	p = L.point(1, 2),
+	p2 = transformation.transform(p), //  L.point(7, 8)
+	p3 = transformation.untransform(p2); //  L.point(1, 2)
 </code></pre>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="transformation">
 <tr>
-<th class="width250">Constructor</th>
-		<th>Usage</th>
+<th class="width250">Creation</th>
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.Transformation</b>(
-			<nobr>&lt;Number&gt; <i>a</i></nobr>,
+<td><code><nobr><span class="keyword">new</span> <b>L.Transformation</b>(</nobr><nobr>&lt;Number&gt; <i>a</i></nobr>,
 			<nobr>&lt;Number&gt; <i>b</i></nobr>,
 			<nobr>&lt;Number&gt; <i>c</i></nobr>,
 			<nobr>&lt;Number&gt; <i>d</i> )</nobr></code></td>
-
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.Transformation(<span class="comment">…</span>)</code><br><!--<code>L.point(<span class="comment">&hellip;</span>)</code><br />
-			<code>L.point([<span class="comment">&hellip;</span>])</code>-->
-</td>
 
 		<td>Creates a transformation object with the given coefficients.</td>
 	</tr>
@@ -5098,7 +5165,7 @@ L.map('map');</code></pre>
 		<td>Returns the reverse transformation of the given point, optionally divided by the given scale. Only accepts real <code>L.Point</code> instances, not arrays.</td>
 	</tr>
 </table>
-<h2 id="lineutil">L.LineUtil</h2>
+<h2 id="lineutil">LineUtil</h2>
 
 <p>Various utility functions for polyine points processing, used by Leaflet internally to make polylines lightning-fast.</p>
 
@@ -5150,7 +5217,7 @@ L.map('map');</code></pre>
 		<td>Clips the segment <code>a</code> to <code>b</code> by rectangular bounds (modifying the segment points directly!). Used by Leaflet to only show polyline points that are on the screen or near, increasing performance.</td>
 	</tr>
 </table>
-<h2 id="polyutil">L.PolyUtil</h2>
+<h2 id="polyutil">PolyUtil</h2>
 
 <p>Various utility functions for polygon geometries.</p>
 
@@ -5172,7 +5239,7 @@ L.map('map');</code></pre>
 		<td>Clips the polygon geometry defined by the given points by rectangular bounds. Used by Leaflet to only show polygon points that are on the screen or near, increasing performance. Note that polygon points needs different algorithm for clipping than polyline, so there's a seperate method for it.</td>
 	</tr>
 </table>
-<h2 id="domevent">L.DomEvent</h2>
+<h2 id="domevent">DomEvent</h2>
 
 <p>Utility functions to work with the DOM events, used by Leaflet internally.</p>
 
@@ -5252,7 +5319,7 @@ L.map('map');</code></pre>
 		<td>Gets normalized wheel delta from a <code>mousewheel</code> DOM event.</td>
 	</tr>
 </table>
-<h2 id="domutil">L.DomUtil</h2>
+<h2 id="domutil">DomUtil</h2>
 
 <p>Utility functions to work with the DOM tree, used by Leaflet internally.</p>
 
@@ -5403,27 +5470,22 @@ L.map('map');</code></pre>
 		<td>Vendor-prefixed transform style name.</td>
 	</tr>
 </table>
-<h2 id="posanimation">L.PosAnimation</h2>
+<h2 id="posanimation">PosAnimation</h2>
 
 <p>Used internally for panning animations, utilizing CSS3 Transitions for modern browsers and a timer fallback for IE6-9.</p>
 
 <pre><code class="javascript">var fx = new L.PosAnimation();
 fx.run(el, [300, 500], 0.5);</code></pre>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="posanimation">
 <tr>
-<th class="width200">Constructor</th>
-		<th>Usage</th>
+<th class="width200">Creation</th>
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.PosAnimation</b>()</code></td>
-
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.PosAnimation()</code>
-		</td>
+<td><code><span class="keyword">new</span> <b>L.PosAnimation</b>()</code></td>
 
 		<td>Creates a PosAnimation object.</td>
 	</tr>
@@ -5472,30 +5534,24 @@ fx.run(el, [300, 500], 0.5);</code></pre>
 		<td>Fired when the animation ends.</td>
 	</tr>
 </table>
-<h2 id="draggable">L.Draggable</h2>
+<h2 id="draggable">Draggable</h2>
 
-<p>A class for making DOM elements draggable (including touch support). Used internally for map and marker dragging.</p>
+<p>A class for making DOM elements draggable (including touch support). Used internally for map and marker dragging. Only works for elements that were positioned with <a href="reference.html#domutil-setposition">DomUtil#setPosition</a></p>
 
 <pre><code class="javascript">var draggable = new L.Draggable(elementToDrag);
 draggable.enable();
 </code></pre>
 
-<h3>Constructor</h3>
+<h3>Creation</h3>
 
 <table data-id="draggable">
 <tr>
-<th class="width200">Constructor</th>
-		<th>Usage</th>
+<th class="width200">Creation</th>
 		<th>Description</th>
 	</tr>
 <tr>
-<td><code><b>L.Draggable</b>(
+<td><code><b><span class="keyword">new</span> L.Draggable</b>(
 			<nobr>&lt;HTMLElement&gt; <i>element</i>,</nobr><nobr>&lt;HTMLElement&gt; <i>dragHandle?</i> )</nobr></code></td>
-
-		<td class="factory-usage">
-			<code><span class="keyword">new</span> L.Draggable(<span class="comment">…</span>)</code><!--<br />
-			<code>L.draggable(<span class="comment">&hellip;</span>)</code>-->
-		</td>
 
 		<td>Creates a Draggable object for moving the given element when you start dragging the <code>dragHandle</code> element (equals the element itself by default).</td>
 	</tr>
@@ -5834,6 +5890,13 @@ map.addControl(new MyControl());
 		<td><code>Number</code></td>
 		<td>Returns the scale used when transforming projected coordinates into pixel coordinates for a particular zoom. For example, it returns <code>256 * 2^zoom</code> for Mercator-based CRS.</td>
 	</tr>
+<tr>
+<td><code><b>getSize</b>(
+			<nobr>&lt;Number&gt; <i>zoom</i> )</nobr></code></td>
+
+		<td><code><a href="reference.html#point">Point</a></code></td>
+		<td>Returns the size of the world in pixels for a particular zoom.</td>
+	</tr>
 </table>
 <h3>Properties</h3>
 
@@ -5920,7 +5983,7 @@ map.addControl(new MyControl());
 		<td>Forces Leaflet to not use hardware-accelerated CSS 3D transforms for positioning (which may cause glitches in some rare environments) even if they're supported.</td>
 	</tr>
 </table>
-<h2 id="noconflict">L.noConflict()</h2>
+<h2 id="noconflict">noConflict</h2>
 
 <p>This method restores the L global variable to the original value it had before Leaflet inclusion, and returns the real Leaflet namespace so you can put it elsewhere, like this:</p>
 <p>
@@ -5934,7 +5997,7 @@ var Leaflet = L.noConflict();
 // now L points to that other library again, and you can use Leaflet.Map etc.</code></pre>
 
 
-<h2 id="version">L.version</h2>
+<h2 id="version">version</h2>
 
 <p>A constant that represents the Leaflet version in use.</p>
 <p>
@@ -6013,13 +6076,13 @@ for (var i = 0, len = tables.length; i < len; i++) {
 			var s = document.getElementsByTagName('script')[0];
 			s.parentNode.insertBefore(ga, s);
 		})();
-	</script><script>
+	</script><!--<script>
 		var uvOptions = {};
 		(function() {
 			var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
 			uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/ygv5CFpu3yBQFTFPOAdFg.js';
 			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
 		})();
-	</script>
+	</script>-->
 </body>
 </html>
