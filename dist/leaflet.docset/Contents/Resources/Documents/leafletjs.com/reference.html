@@ -7,17 +7,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="http://leafletjs.com/docs/images/favicon.png">
 <link href="http://leafletjs.com/atom.xml" type="application/atom+xml" rel="alternate" title="Leaflet Dev Blog Atom Feed">
-<!-- Blueprint --><link rel="stylesheet" href="http://leafletjs.com/docs/css/blueprint/screen.css" media="screen, projection">
-<link rel="stylesheet" href="http://leafletjs.com/docs/css/blueprint/print.css" media="print">
-<link rel="stylesheet" href="http://leafletjs.com/docs/css/screen.css" media="screen, projection">
-<script src="http://leafletjs.com/docs/highlight/highlight.pack.js"></script><link rel="stylesheet" href="http://leafletjs.com/docs/highlight/styles/github.css">
-<!-- Leaflet --><link rel="stylesheet" href="http://leafletjs.com/dist/leaflet.css">
-<!--[if lte IE 8]><link rel="stylesheet" href="dist/leaflet.ie.css" /><![endif]--><script src="http://leafletjs.com/dist/leaflet.js"></script><script>
-		CM_ATTR = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+<!-- Blueprint --><link rel="stylesheet" href="docs/css/blueprint/screen.css" media="screen, projection">
+<link rel="stylesheet" href="docs/css/blueprint/print.css" media="print">
+<link rel="stylesheet" href="docs/css/screen.css" media="screen, projection">
+<script src="docs/highlight/highlight.pack.js"></script><link rel="stylesheet" href="docs/highlight/styles/github.css">
+<!-- Leaflet --><link rel="stylesheet" href="dist/leaflet.css">
+<!--[if lte IE 8]><link rel="stylesheet" href="dist/leaflet.ie.css" /><![endif]--><script src="dist/leaflet.js"></script><script>
+		MB_ATTR = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
 				'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-				'Imagery © <a href="http://cloudmade.com">CloudMade</a>';
+				'Imagery © <a href="http://mapbox.com">Mapbox</a>';
 
-		CM_URL = 'http://{s}.tile.cloudmade.com/d4fc77ea4a63471cab2423e66626cbb6/{styleId}/256/{z}/{x}/{y}.png';
+		MB_URL = 'https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png';
 
 		OSM_URL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 		OSM_ATTRIB = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors';
@@ -26,13 +26,12 @@
 <body class="api-page">
 	<div class="container">
 		<h1><a href="http://leafletjs.com">Leaflet</a></h1>
-		<h3 class="alt">An Open-Source JavaScript Library for Mobile-Friendly Interactive Maps<!-- by <a href="http://cloudmade.com">CloudMade</a>-->
-</h3>
+		<h3 class="alt">An Open-Source JavaScript Library for Mobile-Friendly Interactive Maps</h3>
 
 		
 
 		<ul class="nav clearfix">
-<!-- <li><a class="cloudmade-link" href="http://cloudmade.com"></a></li> --><li>
+<li>
 				
 					<a href="http://leafletjs.com/index.html">Overview</a>
 				
@@ -264,8 +263,8 @@ var map = L.map('map', {
 <td><code><b>maxBounds</b></code></td>
 		<td><code><a href="reference.html#latlngbounds">LatLngBounds</a></code></td>
 		<td><code><span class="literal">null</span></code></td>
-		<td>When this option is set, the map restricts the view to the given geographical bounds, bouncing the user back when he tries to pan outside the view, and also not allowing to zoom out to a view that's larger than the given bounds (depending on the map size). To set the restriction dynamically, use <a href="reference.html#map-setmaxbounds">setMaxBounds</a> method</td>
-	</tr>
+		<td>When this option is set, the map restricts the view to the given geographical bounds, bouncing the user back when he tries to pan outside the view. To set the restriction dynamically, use <a href="reference.html#map-setmaxbounds">setMaxBounds</a> method</td>
+    </tr>
 <tr>
 <td><code><b>crs</b></code></td>
 		<td><code><a href="reference.html#icrs">CRS</a></code></td>
@@ -1684,6 +1683,12 @@ var map = L.map('map', {
 		<td><code><span class="literal">null</span></code></td>
 		<td>Set it to <code><span class="literal">false</span></code> if you want to override the default behavior of the popup closing when user clicks the map (set globally by the <code>Map</code> <code>closePopupOnClick</code> option).</td>
 	</tr>
+<tr>
+<td><code><b>className</b></code></td>
+		<td><code>String</code></td>
+		<td><code class="javascript"><span class="string">''</span></code></td>
+		<td>A custom class name to assign to the popup.</td>
+	</tr>
 </table>
 <h3>Methods</h3>
 
@@ -1744,10 +1749,7 @@ var map = L.map('map', {
 
 <h3>Usage example</h3>
 
-<pre><code class="javascript">L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', {
-	key: 'API-key',
-	styleId: 997
-}).addTo(map);</code></pre>
+<pre><code class="javascript">L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar'}).addTo(map);</code></pre>
 
 <h3>Creation</h3>
 
@@ -1828,7 +1830,7 @@ var map = L.map('map', {
 <td><code><b>attribution</b></code></td>
 		<td><code>String</code></td>
 		<td><code><span class="string">''</span></code></td>
-		<td>e.g. "© CloudMade" — the string used by the attribution control, describes the layer data.</td>
+		<td>e.g. "© Mapbox" — the string used by the attribution control, describes the layer data.</td>
 	</tr>
 <tr>
 <td><code><b>tms</b></code></td>
@@ -1895,6 +1897,12 @@ var map = L.map('map', {
 		<td><code><code>Boolean</code></code></td>
 		<td><code><span class="literal">false</span></code></td>
 		<td>If <code><span class="literal">true</span></code>, all the tiles that are not visible after panning are placed in a reuse queue from which they will be fetched when new tiles become visible (as opposed to dynamically creating new ones). This will in theory keep memory usage low and eliminate the need for reserving new memory whenever a new tile is needed.</td>
+	</tr>
+<tr>
+<td><code><b>bounds</b></code></td>
+		<td><code><a href="reference.html#latlngbounds">LatLngBounds</a></code></td>
+		<td><code><span class="literal">null</span></code></td>
+		<td>When this option is set, the TileLayer only loads tiles that are in the given geographical bounds.</td>
 	</tr>
 </table>
 <h3>Events</h3>
@@ -3260,7 +3268,7 @@ map.fitBounds(bounds);</code></pre>
 		<td>Creates a layer from a given GeoJSON feature.</td>
 	</tr>
 <tr>
-<td><code><b>coordsToLatlng</b>(
+<td><code><b>coordsToLatLng</b>(
 			<nobr>&lt;Array&gt; <i>coords</i></nobr>,
 			<nobr>&lt;Boolean&gt; <i>reverse?</i> )</nobr></code></td>
 
@@ -3268,7 +3276,7 @@ map.fitBounds(bounds);</code></pre>
 		<td>Creates a LatLng object from an array of 2 numbers (latitude, longitude) used in GeoJSON for points. If <code>reverse</code> is set to <code><span class="literal">true</span></code>, the numbers will be interpreted as (longitude, latitude).</td>
 	</tr>
 <tr>
-<td><code><b>coordsToLatlngs</b>(
+<td><code><b>coordsToLatLngs</b>(
 			<nobr>&lt;Array&gt; <i>coords</i></nobr>,
 			<nobr>&lt;Number&gt; <i>levelsDeep?</i></nobr>,
 			<nobr>&lt;Boolean&gt; <i>reverse?</i> )</nobr></code></td>
@@ -4157,7 +4165,7 @@ map.addControl(control);</code></pre>
 <td><code><b>addAttribution</b>(
 			<nobr>&lt;String&gt; <i>text</i> )</nobr></code></td>
 		<td><code><span class="keyword">this</span></code></td>
-		<td>Adds an attribution text (e.g. <code><span class="string">'Vector data &amp;copy; CloudMade'</span></code>).</td>
+		<td>Adds an attribution text (e.g. <code><span class="string">'Vector data &amp;copy; Mapbox'</span></code>).</td>
 	</tr>
 <tr>
 <td><code><b>removeAttribution</b>(
@@ -4171,7 +4179,7 @@ map.addControl(control);</code></pre>
 <p>The layers control gives users the ability to switch between different base layers and switch overlays on/off (check out the <a href="http://leafletjs.com/examples/layers-control.html">detailed example</a>). Extends <a href="reference.html#control">Control</a>.</p>
 
 <pre><code>var baseLayers = {
-	"CloudMade": cloudmade,
+	"Mapbox": mapbox,
 	"OpenStreetMap": osm
 };
 
@@ -4479,7 +4487,7 @@ map.off('click', onClick);</code></pre>
 </table>
 <h2 id="event-objects">Event objects</h2>
 
-<p>Event object is an object that you recieve as an argument in a listener function when some event is fired, containing useful information about that event. For example:</p>
+<p>Event object is an object that you receive as an argument in a listener function when some event is fired, containing useful information about that event. For example:</p>
 
 <pre><code class="javascript">map.on('click', function(e) {
 	alert(e.latlng); // e is an event object (MouseEvent in this case)
@@ -4788,7 +4796,7 @@ a instanceof MyClass; // true
 
 <pre><code>var MyChildClass = MyClass.extend({
 	initialize: function () {
-		MyClass.prototype.initialize.call("Yo");
+		MyClass.prototype.initialize.call(this, "Yo");
 	},
 
 	greet: function (name) {
@@ -6021,11 +6029,9 @@ for (var i = 0, len = tables.length; i < len; i++) {
 }
 </script><div class="footer">
 			<hr>
-<p class="quiet">© 2010–2013 <a href="http://agafonkin.com/en">Vladimir Agafonkin</a>, 2010–2011 <a href="http://cloudmade.com">CloudMade</a>. Maps © <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors.</p>
+<p class="quiet">© 2010–2014 <a href="http://agafonkin.com/en">Vladimir Agafonkin</a>, 2010–2011 <a href="http://cloudmade.com">CloudMade</a>. Maps © <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors.</p>
 		</div>
 	</div>
-
-	<a href="http://github.com/Leaflet/Leaflet"></a>
 
 	<script>
 		hljs.tabReplace = '    ';

@@ -51,8 +51,8 @@ h1 a:hover, h1 a:focus {
 
 h2 {
 	font-size: 1.8em;
-	margin-top: 1.3em;
-	margin-bottom: 1em;
+	margin-top: 20px;
+	margin-bottom: 16px;
 	font-weight: bold;
 	padding: 4px 12px 3px;
 	margin-left: 0;
@@ -72,30 +72,30 @@ h2 {
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#b0de5c', EndColorStr='#82cb00'); /* IE6�IE9 */
 
 	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
 
 	text-shadow: 0 -1px 1px rgba(0,0,0,0.35);
+	}
 
+.api-page h2 {
 	cursor: pointer;
 	}
 
 .api-page h2[id]:before,
 .api-page tr[id] td:first-child:before {
-	content:'Permalink';
-	display:inline-block;
-	margin:0px 5px 0px -35px;
-	width:30px;
-	height:20px;
-	line-height:20px;
-	vertical-align:baseline;
-	background:url(../images/sprite.png) -0px -0px no-repeat;
-	opacity:0.2;
-	border-radius:50%;
-	text-indent:-9999px;
-	border-radius:50%;
-	overflow:hidden;
+	content: 'Permalink';
+	display: inline-block;
+	margin: 0px 5px 0px -35px;
+	width: 30px;
+	height: 20px;
+	line-height: 20px;
+	vertical-align: baseline;
+	background: url(../images/sprite.png) -0px -0px no-repeat;
+	opacity: 0.2;
+	border-radius: 50%;
+	text-indent: -9999px;
+	overflow: hidden;
 	cursor: pointer;
+	position: absolute;
 	}
 
 .api-page tr[id] td:first-child:before {
@@ -143,8 +143,6 @@ h3.alt {
 	color: #444;
 
 	box-shadow: 0 0 15px #ddd;
-	-moz-box-shadow: 0 0 15px #ddd;
-	-webkit-box-shadow: 0 0 15px #ddd;
 
 	border-radius: 5px;
 	}
@@ -210,15 +208,10 @@ td {
 	background-image: -webkit-linear-gradient(top, #ffffff, #eaebec); /* Chrome 10+, Saf5.1+, iOS 5+ */
 	background-image:    -moz-linear-gradient(top, #ffffff, #eaebec); /* FF3.6+ */
 	background-image:      -o-linear-gradient(top, #ffffff, #eaebec); /* Opera 11.10+ */
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#eff0f1'); /* IE6�IE9 */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#eff0f1'); /* IE6-IE9 */
 
 	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-
 	box-shadow: 0 0 8px #eee;
-	-moz-box-shadow: 0 0 8px #eee;
-	-webkit-box-shadow: 0 0 8px #eee;
 	}
 
 	.nav li a, .nav li span {
@@ -291,27 +284,6 @@ td {
 		color: black;
 	}
 
-#forkme {
-	position: absolute;
-	top: 0;
-	right: 0;
-	border: 0;
-	opacity: 0.3;
-
-	-webkit-filter: blur(1px);
-	-webkit-transform: scale(0.8);
-	-webkit-transform-origin: 100% 0;
-
-	-webkit-transition: all 0.3s ease-out;  /* Saf3.2+, Chrome */
-     -moz-transition: all 0.3s ease-out;  /* FF4+ */
-       -o-transition: all 0.3s ease-out;  /* Opera 10.5+ */
-          transition: all 0.3s ease-out;
-	}
-a:hover #forkme, a:focus #forkme {
-	opacity: 1;
-	-webkit-filter: none;
-	-webkit-transform: scale(1);
-	}
 
 #toc {
 	padding-left: 20px;

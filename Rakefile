@@ -8,13 +8,13 @@ task :default => [
   :remove_annoying_parts_from_docs,
   :fetch_icon,
   :index,
+  :add_info_plist,
   :tar
 ]
 
 task :fetch_docs do
   target_dir = Dir.getwd + '/dist/leaflet.docset/Contents/Resources/Documents'
-  system "wget --convert-links --page-requisites --no-host-directories --directory-prefix #{target_dir} #{DOC_URL}"
-  system "wget http://leafletjs.com/docs/images/favicon.png "
+  system "wget --convert-links --page-requisites --directory-prefix=#{target_dir} #{DOC_URL}"
 end
 
 task :remove_annoying_parts_from_docs do
@@ -22,7 +22,7 @@ task :remove_annoying_parts_from_docs do
   doc_to_modify.css('#forkme').remove
   doc_to_modify.css('.social-buttons').remove
   doc_to_modify.css('#uvTab').remove
-  File.open file_path, 'w' do |f|
+  File.open html_file_path, 'w' do |f|
     f.puts doc_to_modify.to_html
   end
 end
@@ -39,22 +39,31 @@ task :index do
   parse_doc_into_db(doc, db)
 end
 
+task :add_info_plist do
+  info_plist = Dir.getwd + '/Info.plist'
+  FileUtils.cp info_plist, docset_contents_path
+end
+
 task :tar do
   system "tar --exclude='.DS_Store' -cvzf dist/Leaflet.tgz dist/leaflet.docset"
 end
 
 private
-  def file_path
-    Dir.getwd + '/dist/leaflet.docset/Contents/Resources/Documents/reference.html'
+  def docset_contents_path
+    Dir.getwd + '/dist/leaflet.docset/Contents/'
   end
 
-  def open_file
-    File.open file_path
+  def html_file_path
+    docset_contents_path + 'Resources/Documents/leafletjs.com/reference.html'
+  end
+
+  def open_html_file
+    file ||= File.open(html_file_path)
   end
 
   def doc
-    doc = Nokogiri::HTML(open_file)
-    open_file.close
+    doc = Nokogiri::HTML(open_html_file)
+    open_html_file.close
     doc
   end
 
@@ -66,7 +75,7 @@ private
   end
 
   def parse_doc_into_db(doc, db)
-    file_name = 'reference.html'
+    file_name = './leafletjs.com/reference.html'
     doc.css('h2').each do |heading2|
       name = heading2.content
       type = determine_type(heading2)
