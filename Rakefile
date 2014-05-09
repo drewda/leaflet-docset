@@ -45,7 +45,7 @@ task :add_info_plist do
 end
 
 task :tar do
-  system "tar --exclude='.DS_Store' -cvzf dist/Leaflet.tgz dist/leaflet.docset"
+  system "cd dist && tar --exclude='.DS_Store' -cvzf Leaflet.tgz leaflet.docset"
 end
 
 private
