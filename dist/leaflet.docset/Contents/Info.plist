@@ -11,7 +11,7 @@
 	<key>isDashDocset</key>
 	<true/>
   <key>dashIndexFilePath</key>
-  <string>leafletjs.com/reference.html</string>
+  <string>leafletjs.com/reference-1.0.0.html</string>
   <key>isJavaScriptEnabled</key>
   <true/>
 </dict>

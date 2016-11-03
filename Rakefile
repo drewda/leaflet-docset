@@ -1,7 +1,7 @@
 require 'sqlite3'
 require 'nokogiri'
 
-DOC_URL = "http://leafletjs.com/reference.html"
+DOC_URL = "http://leafletjs.com/reference-1.0.0.html"
 
 task :default => [
   :fetch_docs,
@@ -19,9 +19,10 @@ end
 
 task :remove_annoying_parts_from_docs do
   doc_to_modify = doc.clone
-  doc_to_modify.css('#forkme').remove
-  doc_to_modify.css('.social-buttons').remove
-  doc_to_modify.css('#uvTab').remove
+  doc_to_modify.css('.ext-links').remove
+  doc_to_modify.css('.nav').remove
+  doc_to_modify.css('#toc-copy').remove
+  doc_to_modify.xpath('//script[@src="docs/js/docs.js"]').remove # no TOC script
   File.open html_file_path, 'w' do |f|
     f.puts doc_to_modify.to_html
   end
@@ -29,7 +30,7 @@ end
 
 task :fetch_icon do
   target_file = Dir.getwd + '/dist/leaflet.docset/icon.png'
-  system "wget http://leafletjs.com/docs/images/favicon.png -O #{target_file}"
+  system "wget http://leafletjs.com/docs/images/favicon.ico -O #{target_file}"
 end
 
 task :index do
@@ -54,7 +55,7 @@ private
   end
 
   def html_file_path
-    docset_contents_path + 'Resources/Documents/leafletjs.com/reference.html'
+    docset_contents_path + 'Resources/Documents/leafletjs.com/reference-1.0.0.html'
   end
 
   def open_html_file
@@ -75,7 +76,7 @@ private
   end
 
   def parse_doc_into_db(doc, db)
-    file_name = './leafletjs.com/reference.html'
+    file_name = './leafletjs.com/reference-1.0.0.html'
     doc.css('h2').each do |heading2|
       name = heading2.content
       type = determine_type(heading2)
