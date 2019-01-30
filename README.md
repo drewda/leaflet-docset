@@ -6,9 +6,13 @@ Documentation for the [Leaflet](http://leafletjs.com/) JavaScript map library in
 To Use Docs
 -----------
 1.  Install a docset viewer, like [Dash](http://kapeli.com/dash).
-2.  In Dash's preferences, add the following docset feed URL: [https://raw.github.com/drewda/leaflet-docset/master/Leaflet.xml](dash-feed://https%3A%2F%2Fraw.github.com%2Fdrewda%2Fleaflet-docset%2Fmaster%2FLeaflet.xml)
+2.  In Dash's preferences, search for this docset under the "user contributed" section:
 
-![image](add-docset-feed-url-screenshot.png)
+![image](find-docset-in-dash.png)
+
+3. Press "download"
+
+If you are using another docset viewer, like [Zeal](https://zealdocs.org/) for Windows or Linux, you may need to download the docset file (`Leaflet.tgz`) from the latest [release](https://github.com/drewda/leaflet-docset/releases).
 
 To Generate Docs
 ----------------
