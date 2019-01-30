@@ -5,6 +5,7 @@ FILE_NAME = "reference-1.4.0.html"
 DOC_URL = "http://leafletjs.com/#{FILE_NAME}"
 
 task :default => [
+  :clear_existing_docs,
   :fetch_docs,
   :remove_annoying_parts_from_docs,
   :fetch_icon,
@@ -12,6 +13,10 @@ task :default => [
   :add_info_plist,
   :tar
 ]
+
+task :clear_existing_docs do
+  FileUtils.rm_rf(Dir.getwd + '/dist')
+end
 
 task :fetch_docs do
   target_dir = Dir.getwd + '/dist/leaflet.docset/Contents/Resources/Documents'
