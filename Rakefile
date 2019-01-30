@@ -1,7 +1,7 @@
 require 'sqlite3'
 require 'nokogiri'
 
-FILE_NAME = "reference-1.3.4.html"
+FILE_NAME = "reference-1.4.0.html"
 DOC_URL = "http://leafletjs.com/#{FILE_NAME}"
 
 task :default => [
