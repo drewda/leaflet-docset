@@ -83,6 +83,10 @@ table td code b {
 	font-weight: normal;
 }
 
+iframe {
+	border: none;
+}
+
 
 /* headings */
 
@@ -386,6 +390,12 @@ h3.tagline {
 	margin-top: .5em;
 	margin-bottom: .5em;
 	background-size: 106px;
+}
+
+.logo-openstreetmap {
+	background-position: 50% -796px;
+	width: 160px;
+	height: 56px;
 }
 
 .features {

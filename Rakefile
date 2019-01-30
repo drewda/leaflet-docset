@@ -1,7 +1,8 @@
 require 'sqlite3'
 require 'nokogiri'
 
-DOC_URL = "http://leafletjs.com/reference-1.0.0.html"
+FILE_NAME = "reference-1.3.4.html"
+DOC_URL = "http://leafletjs.com/#{FILE_NAME}"
 
 task :default => [
   :fetch_docs,
@@ -55,7 +56,7 @@ private
   end
 
   def html_file_path
-    docset_contents_path + 'Resources/Documents/leafletjs.com/reference-1.0.0.html'
+    docset_contents_path + "Resources/Documents/leafletjs.com/#{FILE_NAME}"
   end
 
   def open_html_file
@@ -76,7 +77,7 @@ private
   end
 
   def parse_doc_into_db(doc, db)
-    file_name = './leafletjs.com/reference-1.0.0.html'
+    file_name = "./leafletjs.com/#{FILE_NAME}"
     doc.css('h2').each do |heading2|
       name = heading2.content
       type = determine_type(heading2)
