@@ -77,7 +77,7 @@ private
   end
 
   def parse_doc_into_db(doc, db)
-    file_name = "./leafletjs.com/#{FILE_NAME}"
+    file_name = "leafletjs.com/#{FILE_NAME}"
     doc.css('h2').each do |heading2|
       name = heading2.content
       type = determine_type(heading2)
